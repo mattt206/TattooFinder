@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :services do
     resources :bookings, only: %i[new create]
-    resources :Reviews, only: %i[new create]
+    resources :reviews, only: %i[new create]
   end
   resources :providers
   resources :bookings, except: %i[new create]
