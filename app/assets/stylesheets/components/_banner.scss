@@ -1,0 +1,70 @@
+.banner {
+  background-image: url("https://preview.redd.it/z46bm9ykgeu91.jpg?width=1080&format=pjpg&auto=webp&s=a0f99b211635401315008f2649993b2616487023");
+  background-attachment: fixed;
+  height: 650px;
+  background-size: cover;
+  background-position: 0px -800px;
+  display: flex;
+  align-items: center;
+}
+
+.banner .tattoo-finder {
+  color: white !important;
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 5px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+.banner p {
+  color: white;
+  opacity: 0.9;
+  font-size: 25px;
+  font-weight: 300;
+  margin: 0 ;
+  margin-bottom: 40px;
+}
+
+.banner h1 {
+  font-family: "roboto";
+  font-weight: bold;
+  font-size: 58px;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  width: 600px;
+}
+
+p {
+  font-size: 19px;
+  color: white;
+  font-style: italic;
+  font-weight: 400;
+  font-family: "inter";
+}
+
+.banner .btn-primary {
+  color: white;
+  background-color: #3D3737;
+  font-weight: 500;
+  font-style: italic;
+  font-family: "inter";
+  border: none;
+  border-radius: 0px 8px 8px 0px;
+
+
+  &:hover {
+    background-color: #292525;
+  }
+
+}
+
+.banner .form-control {
+  width: 500px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.banner .input-group {
+  width: 700px;
+  height: 40px;
+}

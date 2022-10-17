@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  align-items: center;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +10,17 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-lewagon a {
+  text-decoration: none;
+  color: black;
+  font-family: "roboto";
+  font-weight: 400;
+  font-size: 18px;
+  height: fit-content;
+}
+
+.items-center {
+  align-items: center;
 }
