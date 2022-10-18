@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="col-12 mx-auto ">
+    <div>
+      <div class="container">
+        <h2 class="d-flex justify-content-center">Edit your Studio</h2>
+      </div>
+      <div>
+        <%= simple_form_for [@provider]  do |f| %>
+          <p><%= f.input :name %></p>
+          <p><%= f.input :address %></p>
+          <p><%= f.input :start_time %></p>
+          <p><%= f.input :close_time %></p>
+          <p><%= f.input :stylepicture, as: :file %>
+          <div class="form-actions d-flex justify-content-center">
+            <%= f.button :submit, "Save", class: "btn btn-outline-dark"%>
+            <%#= link_to "Back", services_path, class: "btn btn-outline-dark"%>
+            <%= link_to "Back", provider_path(@provider), type: "button", class: "btn btn-outline-dark"  %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 mb-2">
+
+
+          <div class="card" >
+            <% if @provider.photos.attached? %>
+              <div class="row">
+                <% @provider.photos.each do |photo|  %>
+                  <div class="col-md-6">
+                    <%= cl_image_tag photo.key, class: "card-img-top img-fluid" %>
+                  </div>
+                  <% end %>
+              </div>
+            <% else %>
+              <%= image_tag "unknow.png", class: "card-img-top img-fluid" %>
+            <% end %>
+            <div class="card-body" style="background-color:grey;">
+              <div>
+                <h3 class="card-title" style="background-color:black;"><%= @provider.name %></h3>
+              </div>
+                <p> <%= @provider.description %>  </p>
+                <h4> Addres: <%= @provider.address %>  </h4>
+                <h4> Open:  <%= @provider.start_time %>  </h4>
+                <h4> Close: <%= @provider.close_time %>  </h4>
+                <h4>  <%= @provider.category %>  </h4>
+                <h4>  <%= @provider.category.class %>  </h4>
+
+              <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
+              <%= link_to "Edit", edit_provider_path(@provider), class: "btn btn-outline-dark" %>
+              <%= link_to "Delete", provider_path(@provider), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+            </div>
+          </div>
+
+
+    </div>
+    <!---- mapa  --->
+    <div class = "col-4 mb-2" style="background-color:grey;">
+      <%= @provider.latitude %>
+      <%= @provider.longitude %>
+    </div>
+  </div>
+  <!---- artistas del studio  --->
+      <div class="row">
+        <div class="col-8 mb-2">
+          <div class="card" >
+            <div class="card-body" style="background-color:grey;">
+              <p>id: <%= @provider.user_id %> </p>
+              <p>user data: <%= @provider.user.class %> </p>
+              <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
+
+
+              <% if !@provider.user_id.nil? %>
+                <p>entro</p>
+              <% else %>
+                <p>no entra</p>
+              <% end %>
+              <div>
+                <p>info artis</p>
+              </div>
+              <%= link_to "Artist profile", providers_path, class: "btn btn-outline-dark"%>
+            </div>
+          </div>
+        </div>
+        <!---- add new artist to your studio  --->
+        <div class = "col-4 mb-2" style="background-color:grey;" >
+        <p>add new artist</p>
+      </div>
+
+      </div>
+
+
+</div>

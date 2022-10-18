@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class = "col-12">
+      <%= simple_form_for [@provider]  do |f| %>
+        <p><%= f.input :name %></p>
+        <p><%= f.input :address %></p>
+        <p><%= f.input :start_time %></p>
+        <p><%= f.input :close_time %></p>
+        <p><%= f.input :photos, as: :file %>
+        <p><%= f.input :category, as: :check_boxes, collection: ['Old school','New school'] %>
+
+        <div class="form-actions d-flex justify-content-center">
+          <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
+        </div>
+          <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
+      <% end %>
+
+    </div>
+  </div>
+</div>
