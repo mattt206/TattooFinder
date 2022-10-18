@@ -1,0 +1,61 @@
+.signup-container {
+  margin-top: 70px;
+
+  .bold-link a {
+    font-weight: bold;
+    font-size: 17px;
+  }
+
+  p {
+    color: black;
+    font-family: "inter";
+    font-size: 15px !important;
+  }
+
+  h2 {
+    font-family: "roboto";
+    color: black;
+    padding-bottom: 15px;
+    font-weight: bold;
+    margin-top: 0px;
+  }
+
+  .form-inputs {
+    color: black;
+  }
+
+  .btn-success {
+    background-color: #292525;
+    font-weight: 600;
+    color: white;
+    border-radius: 8px 8px 8px 8px;
+    border: none;
+    background-size: cover;
+    width: 100%;
+    height: 45px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+    &:hover{
+      background-color: #07080A;
+      color: white;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+  }
+  .form-control {
+    border-radius: 8px;
+    height: 40px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-family: "inter";
+  }
+}
