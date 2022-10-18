@@ -1,0 +1,21 @@
+<div class="container">
+  <div class ="row">
+    <div class= "col-12">
+      <% @services.each do |service| %>
+        <div class="card" style="width: 18rem;">
+          <% if service.photo.attached? %>
+            <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid" %>
+          <% else %>
+            <%= image_tag "unknow.png", class: "card-img-top img-fluid"%>
+          <% end %>
+          <div class="card-body" style="background-color:grey;">
+            <h5 class="card-title"><%= service.style %></h5>
+            <h3> $ <%= service.price %> COP </h3>
+            <h3> Artist: <%= service.user.nickname %>  </h3>
+            <%= link_to "ver", service_path(service), type: "button", class: "btn btn-outline-dark"  %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

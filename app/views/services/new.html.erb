@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class = "col-12">
+      <%= simple_form_for [@service]  do |f| %>
+        <p><%= f.input :style, collection: ['Old school','New school', 'blackwork', 'minimalis', 'Neo traditional', 'traditional', 'tribal', 'trash polka', 'other'] %></p>
+        <p><%= f.input :price %></p>
+        <p><%= f.input :description %></p>
+        <p><%= f.input :photo, as: :file %>
+        <div class="form-actions d-flex justify-content-center">
+          <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
+        </div>
+          <%= link_to "Back", services_path, class: "btn btn-outline-dark"%>
+      <% end %>
+
+    </div>
+  </div>
+</div>

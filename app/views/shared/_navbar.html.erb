@@ -5,7 +5,7 @@
         <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
       <% end %>
 
-      <%= link_to "Explore" %>
+      <%= link_to "Explore", services_path, class: "nav-link" %>
 
       <div class="ml-auto">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+          <li class="n-nav-item">
+            <%= link_to 'New',  new_service_path, class: "nav-link" %>
+          </li>
           <li class="nav-item active">
             <%= link_to "Home", "#", class: "nav-link" %>
           </li>
