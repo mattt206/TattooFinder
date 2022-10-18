@@ -1,18 +1,28 @@
-<h2>Forgot your password?</h2>
+<div class="container signup-container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-lg-4">
+      <h2>Forgot your password?</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
+        <div class="form-inputs">
+          <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
-  </div>
+        </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Send me reset password instructions", class: "btn btn-success"  %>
+        </div>
+      <% end %>
 
-<%= render "devise/shared/links" %>
+      <p class="small-p">Don't have an account?<strong class="bold-link"><%= render "devise/shared/links" %></strong></p>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <%= image_tag "https://i.pinimg.com/564x/b7/25/b1/b725b1009c7fdea0b4bdcc3386884ae5.jpg"%>
+    </div>
+  </div>
+</div>
