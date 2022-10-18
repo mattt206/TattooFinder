@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+        <% @providers.each do |provider| %>
+          <div class="card" style="width: 18rem;">
+            <% if provider.photos.attached? %>
+              <div class="row">
+                <% provider.photos.each do |photo|  %>
+                  <div class="col-md-6">
+                    <%= cl_image_tag photo.key, class: "card-img-top img-fluid" %>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <%= image_tag "unknow.png", class: "card-img-top img-fluid" %>
+            <% end %>
+
+            <div class="card-body" style="background-color:grey;">
+              <div>
+                <h3 class="card-title" style="background-color:black;"><%= provider.name %></h3>
+              </div>
+            <h3>  <%= provider.description %>  </h3>
+            <%= link_to "ver", provider_path(provider), type: "button", class: "btn btn-outline-dark"  %>
+          </div>
+
+          </div>
+        <% end %>
+
+    </div>
+  </div>
+</div>
