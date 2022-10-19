@@ -19,7 +19,7 @@ class ProvidersController < ApplicationController
   def create
     params["provider"][:user_id] = current_user.id
     @provider = Provider.new(providers_params)
-    
+
     if @provider.save
       redirect_to  providers_path
     else
