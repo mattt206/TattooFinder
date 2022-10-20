@@ -1,0 +1,79 @@
+.index-card {
+  overflow: hidden;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  background-color: var(--590345169);
+  color: black;
+  border-radius: 15px;
+  justify-content: space-between;
+  box-shadow:  0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all 400ms;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.index-card img {
+  height: 100%;
+  width: 180px;
+  object-fit: cover;
+}
+
+.index-card p {
+  font-size: 15px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: black;
+  padding-left: 5px;
+  margin-left: 25px;
+}
+
+.index-card .index-card-info {
+  padding: 16px;
+}
+
+.index-card-image {
+  flex-shrink: 0;
+}
+
+.index-card h2 {
+  padding-left: 5px;
+  font-size: 45px;
+  margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: black;
+}
+
+.index-card h4 {
+  padding-left: 5px;
+  font-size: 32px;
+  margin-left: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: black;
+}
+
+.index-card-links {
+  margin-left: 25px;
+}
+
+.star-color{
+  color: #FFCC32;
+}
+
+.index-card h3 {
+  font-size: 32px;
+  padding-left: 5px;
+  margin-left: 25px;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  font-weight: bold;
+}

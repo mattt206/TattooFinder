@@ -44,7 +44,7 @@ service2.photo.attach(io: photos2, filename: 'service2.png', content_type: 'imag
 service2.save
 
 service3 = Service.create(style: "new school", price: 10, description: "big arm tattoo", user_id: user3.id)
-photos3 = URI.open('https://cdn.99images.com/photos/tattoos/best-tattoos/red-skull-sun-back-tattoo-design-vHPjl.jpg')
+photos3 = URI.open('https://i.pinimg.com/564x/ee/90/38/ee903865e0cf04449dcebcef6abeab59.jpg')
 service3.photo.attach(io: photos3, filename: 'service3.png', content_type: 'image/png')
 service3.save
 

@@ -1,21 +1,38 @@
 <div class="container">
   <div class ="row">
-    <div class= "col-12">
-      <% @services.each do |service| %>
-        <div class="card" style="width: 18rem;">
-          <% if service.photo.attached? %>
-            <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid" %>
-          <% else %>
-            <%= image_tag "unknow.png", class: "card-img-top img-fluid"%>
-          <% end %>
-          <div class="card-body" style="background-color:grey;">
-            <h5 class="card-title"><%= service.style %></h5>
-            <h3> $ <%= service.price %> COP </h3>
-            <h3> Artist: <%= service.user.nickname %>  </h3>
-            <%= link_to "ver", service_path(service), type: "button", class: "btn btn-outline-dark"  %>
+    <div class= "col-12 col-lg-8">
+      <% @services.each do |service|  %>
+        <%= link_to service_path(service), style: "text-decoration: none;" do %>
+          <div class="index-card mt-4">
+            <div class="d-flex align-items-center">
+              <div>
+                <% if service.photo.attached? %>
+                  <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid"%>
+                <% else %>
+                  <%= image_tag "unknowimg.png", class: "card-img-top img-fluid" %>
+                <% end %>
+              </div>
+              <div class="index-card-body">
+                <h3><%= service.user.nickname %></strong>
+                <h4><%= service.style %></h4>
+              </div>
+            </div>
+            <div>
+              <% if service.user.photo.attached? %>
+                <%= cl_image_tag service.user.photo.key, class: "avatar-index img-fluid" %>
+              <% else %>
+                <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+
+    </div>
+
+    <div class="col-12 col-lg-4">
+    <H2>HERE COMES THE MAP HERE COMES THE MAP HERE COMES THE MAP HERE COMES THE MAP HERE COMES THE MAP HERE COMES THE MAP HERE  </H2>
     </div>
   </div>
+
 </div>
