@@ -18,8 +18,11 @@ class ProvidersController < ApplicationController
 
   def create
     params["provider"][:user_id] = current_user.id
+    # @var = params["provider"][:category]
+    # params[:provider][:category].shift
+    # @var = @provider[:category].shift
     @provider = Provider.new(providers_params)
-
+    @provider.category.shift
     if @provider.save
       redirect_to  providers_path
     else
@@ -48,7 +51,9 @@ class ProvidersController < ApplicationController
   end
 
   def providers_params
-    params.require(:provider).permit(:user_id, :name, :category, :description, :address, :latitude, :longitude,
-    :start_time, :close_time, :photos)
+    # params.require(:provider).permit(:user_id, :name, { :category => [] }, :description, :address, :latitude, :longitude,
+    # :start_time, :close_time, :photos)
+    params.require(:provider).permit(:user_id, :name, :description, :address, :latitude, :longitude,
+      :start_time, :close_time, :photos, category: [])
   end
 end
