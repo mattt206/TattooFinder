@@ -14,6 +14,7 @@
           <h4> Precio base: <%= @service.price %></h4>
           <p> Descripción: <%= @service.description %><p>
           <h4> Artista: <%= @service.user.nickname  %> </h4>
+          <span class="badge badge-pill badge-success"><%= @service.user.nickname  %> </span>
             <div>
               <%= link_to "Back", services_path, class: "btn btn-outline-dark"%>
               <%= link_to "Edit", edit_service_path(@service), class: "btn btn-primary mx-2" %>

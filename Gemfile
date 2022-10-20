@@ -6,6 +6,7 @@ ruby "3.1.2"
 gem "cloudinary"
 
 gem "devise"
+gem "array_enum"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
