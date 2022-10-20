@@ -5,6 +5,7 @@ class Provider < ApplicationRecord
   # array_enum categories: { Blackwork: 1, Tradicional: "traidtional" }
 
   belongs_to :user
+  has_many :users # ! 20/10/2022
   has_many_attached :photos
 
   validates :name, :address, :start_time, :close_time, uniqueness: true
