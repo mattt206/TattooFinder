@@ -43,10 +43,11 @@ User.destroy_all
 # service2.photo.attach(io: photos2, filename: 'service2.png', content_type: 'image/png')
 # service2.save
 
-# service3 = Service.create(style: "new school", price: 10, description: "big arm tattoo", user_id: user3.id)
-# photos3 = URI.open('https://cdn.99images.com/photos/tattoos/best-tattoos/red-skull-sun-back-tattoo-design-vHPjl.jpg')
-# service3.photo.attach(io: photos3, filename: 'service3.png', content_type: 'image/png')
-# service3.save
+service3 = Service.create(style: "new school", price: 10, description: "big arm tattoo", user_id: user3.id)
+photos3 = URI.open('https://i.pinimg.com/564x/ee/90/38/ee903865e0cf04449dcebcef6abeab59.jpg')
+service3.photo.attach(io: photos3, filename: 'service3.png', content_type: 'image/png')
+service3.save
+
 
 # service4 = Service.create(style: "old school", price: 10, description: "calavera", user_id: user2.id)
 # photos4 = URI.open('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZNP-yRon3XKbnbIndBeOB-zqPUUU7VSU6lxw09Pgn0J2suwCYNHMgJZODEFR8rLOMxs&usqp=CAU')
