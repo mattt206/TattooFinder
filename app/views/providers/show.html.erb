@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
+
+ <!---studio profile---->
+
     <div class="col-8 mb-2">
-
-
           <div class="card" >
             <% if @provider.photos.attached? %>
               <div class="row">
@@ -54,8 +55,10 @@
               <p>id: <%= @provider.user_id %> </p>
               <p>user data: <%= @provider.user.class %> </p>
               <p>nickanme: <%= @provider.user.nickname %> </p>
+              <p>contact: <%= @provider.user.email %> </p>
               <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
 
+              <%= p @provider.user %>
 
               <% if !@provider.user_id.nil? %>
                 <p>entro</p>
@@ -71,7 +74,21 @@
         </div>
         <!---- add new artist to your studio  --->
         <div class = "col-4 mb-2" style="background-color:grey;" >
+        <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
+
+              <%= p @provider.user.class %>
         <p>add new artist</p>
+        <%=  %>
+        <%= simple_form_for [@provider]  do |f| %>
+
+        <div class="form-inputs">
+          <p><%#= f.input :user_id, as: :select, collection: User.all %></p>
+          <p><%= f.input :user_id, as: :select, collection: @categories %></p>
+          <div class="form-actions d-flex justify-content-center">
+            <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
+          </div>
+        </div>
+      <% end %>
       </div>
 
       </div>

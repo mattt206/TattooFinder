@@ -10,5 +10,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true
-  # validates :nickname, presence: true, uniqueness: true
+  validates :nickname, presence: true, uniqueness: true
 end

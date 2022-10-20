@@ -7,9 +7,18 @@ class ProvidersController < ApplicationController
   end
 
   def show
+    # crear array para guardar todos los usuarios registrados
+    @categories = {"nunez" => 6, "kat" => 4 }
+    @userstoselect = []
+    @users = User.all
+    # iterar sobre los usuarios resgistrados para mostrarlos en la pagina del estudio
+    @users.each do |user|
+      @userstoselect << user[:nickname]
+    end
+
     @artists = []
     user_id = @provider.user_id
-    @artists << User.where(["id = ?", "#{user_id}"])
+    @artists << User.where(["id = ?", user_id.to_s])
   end
 
   def new
@@ -18,9 +27,6 @@ class ProvidersController < ApplicationController
 
   def create
     params["provider"][:user_id] = current_user.id
-    # @var = params["provider"][:category]
-    # params[:provider][:category].shift
-    # @var = @provider[:category].shift
     @provider = Provider.new(providers_params)
     @provider.category.shift
     if @provider.save
