@@ -44,9 +44,11 @@ service2.photo.attach(io: photos2, filename: 'service2.png', content_type: 'imag
 service2.save
 
 service3 = Service.create(style: "new school", price: 10, description: "big arm tattoo", user_id: user3.id)
+
 photos3 = URI.open('https://nextluxury.com/wp-content/uploads/cool-black-arm-tattoo-koreacheon.jpg')
 service3.photo.attach(io: photos3, filename: 'service3.png', content_type: 'image/png')
 service3.save
+
 
 service4 = Service.create(style: "old school", price: 10, description: "calavera", user_id: user2.id)
 photos4 = URI.open('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZNP-yRon3XKbnbIndBeOB-zqPUUU7VSU6lxw09Pgn0J2suwCYNHMgJZODEFR8rLOMxs&usqp=CAU')
