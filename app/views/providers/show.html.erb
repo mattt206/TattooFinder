@@ -25,9 +25,9 @@
                 <h4> Close: <%= @provider.close_time %>  </h4>
                 <h4> Categories:  </h4>
                  <div class="m-2">
-                 <% @provider.category.each do |category| %>
-                  <span class="badge badge-pill badge-light"> <%= category %> </span>
-                 <% end %>
+                  <% @provider.category.each do |category| %>
+                    <span class="badge badge-pill badge-light"> <%= category %> </span>
+                  <% end %>
                  </div>
               <div class="m-2">
                   <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
