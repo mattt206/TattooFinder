@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_231833) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_21_194647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,11 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_231833) do
     t.string "longitude"
     t.datetime "start_time"
     t.datetime "close_time"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category", default: [], null: false, array: true
-    t.index ["user_id"], name: "index_providers_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -98,7 +96,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_231833) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
+    t.bigint "provider_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider_id"], name: "index_users_on_provider_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -106,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_231833) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "services"
   add_foreign_key "bookings", "users"
-  add_foreign_key "providers", "users"
   add_foreign_key "reviews", "services"
   add_foreign_key "services", "users"
+  add_foreign_key "users", "providers"
 end
