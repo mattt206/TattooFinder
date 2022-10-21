@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_one :provider
+  belongs_to :provider
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
