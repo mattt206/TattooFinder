@@ -4,8 +4,10 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :services, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  has_one :provider
-  belongs_to :provider
+  # has_one :provider
+  # belongs_to :provider
+  belongs_to :provider, optional: true
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

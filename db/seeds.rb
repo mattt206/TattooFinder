@@ -8,18 +8,28 @@
 require 'open-uri'
 
 puts "Cleaning database..."
+Provider.destroy_all
 Booking.destroy_all
 Review.destroy_all
 Service.destroy_all
 User.destroy_all
 
+puts "creating privders..."
+provider1 = Provider.new(name: "new school Studio", description: "Somos nuevos en la ciudad de medellin, directamente desde new york", category: ['new school', 'ignorant', 'blackwork'], address: "calle 70 # nutibara", latitude: 0, longitude: 0, start_time: DateTime.now, close_time: DateTime.now )
+photostudio = URI.open('https://i.pinimg.com/originals/d6/bd/37/d6bd379f3126df7e63186cd74dc78752.jpg')
+provider1.photos.attach(io: photostudio, filename: 'studio.png', content_type: 'image/png')
+photostudio2 = URI.open('https://www.greenretreats.co.uk/wp-content/uploads/Edge-Tattoo-Studio-4.5m-x-2.5m-11-1024x683.jpg')
+provider1.photos.attach(io: photostudio2, filename: 'studio.png', content_type: 'image/png')
+provider1.save
+puts "providers ready"
+
 puts "creating users..."
-user1 = User.new(email: "kvond@gmail.com", password: "123456", nickname: "Katt-D")
+user1 = User.new(email: "kvond@gmail.com", password: "123456", nickname: "Katt-D", provider_id: provider1.id)
 photo1 = URI.open('https://upload.wikimedia.org/wikipedia/commons/e/ee/KVD_2016_SEPHORA_WINDOW_037.jpg')
 user1.photo.attach(io: photo1, filename: 'katvond.png', content_type: 'image/png')
 user1.save
 
-user2 = User.new(email: "paulb@gmail.com", password: "123456", nickname: "pualb")
+user2 = User.new(email: "paulb@gmail.com", password: "123456", nickname: "pualb", provider_id: provider1.id)
 photo2 = URI.open('https://live.staticflickr.com/2944/15390181172_3db69db290_b.jpg')
 user2.photo.attach(io: photo2, filename: 'paulbooth.png', content_type: 'image/png')
 user2.save
@@ -70,11 +80,11 @@ puts "bookings ready"
 review1 = Review.new(rating: 4, content: "rapido y me gusto el trabajo final", service_id: service1.id)
 review1.save
 
-provider1 = Provider.new(name: "new school Studio", description: "Somos nuevos en la ciudad de medellin, directamente desde new york", category: ['new school', 'ignorant', 'blackwork'], address: "calle 70 # nutibara", latitude: 0, longitude: 0, start_time: DateTime.now, close_time: DateTime.now, user_id: user2.id  )
-photostudio = URI.open('https://i.pinimg.com/originals/d6/bd/37/d6bd379f3126df7e63186cd74dc78752.jpg')
-provider1.photos.attach(io: photostudio, filename: 'studio.png', content_type: 'image/png')
-photostudio2 = URI.open('https://www.greenretreats.co.uk/wp-content/uploads/Edge-Tattoo-Studio-4.5m-x-2.5m-11-1024x683.jpg')
-provider1.photos.attach(io: photostudio2, filename: 'studio.png', content_type: 'image/png')
-provider1.save
+# provider1 = Provider.new(name: "new school Studio", description: "Somos nuevos en la ciudad de medellin, directamente desde new york", category: ['new school', 'ignorant', 'blackwork'], address: "calle 70 # nutibara", latitude: 0, longitude: 0, start_time: DateTime.now, close_time: DateTime.now )
+# photostudio = URI.open('https://i.pinimg.com/originals/d6/bd/37/d6bd379f3126df7e63186cd74dc78752.jpg')
+# provider1.photos.attach(io: photostudio, filename: 'studio.png', content_type: 'image/png')
+# photostudio2 = URI.open('https://www.greenretreats.co.uk/wp-content/uploads/Edge-Tattoo-Studio-4.5m-x-2.5m-11-1024x683.jpg')
+# provider1.photos.attach(io: photostudio2, filename: 'studio.png', content_type: 'image/png')
+# provider1.save
 
 puts "all db ready"

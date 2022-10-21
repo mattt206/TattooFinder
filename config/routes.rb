@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/profile'
   devise_for :users do
     resources :providers, only: %i[new create edit update destroy]
   end
