@@ -83,7 +83,7 @@
 
         <div class="form-inputs">
           <p><%#= f.input :user_id, as: :select, collection: User.all %></p>
-          <p><%= f.input :user_id, as: :select, collection: @categories %></p>
+          <p><%= f.input :user_id, as: :select, collection: @userstoselect %></p>
           <div class="form-actions d-flex justify-content-center">
             <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
           </div>
