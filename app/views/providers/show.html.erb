@@ -21,9 +21,7 @@
                 <h3 class="card-title" style="background-color:black;"><%= @provider.name %></h3>
               </div>
                 <p> <%= @provider.description %>  </p>
-                <h4> Addres: <%= @provider.address %>  </h4>
-                <h4> Open:  <%= @provider.start_time %>  </h4>
-                <h4> Close: <%= @provider.close_time %>  </h4>
+
                 <h4> Categories:  </h4>
                  <div class="m-2">
                   <% @provider.category.each do |category| %>
@@ -53,9 +51,8 @@
           <div class="card" >
             <div class="card-body" style="background-color:grey;">
               <p>id: <%= @provider.user_id %> </p>
-              <p>user data: <%= @provider.user.class %> </p>
-              <p>nickanme: <%= @provider.user.nickname %> </p>
-              <p>contact: <%= @provider.user.email %> </p>
+              <p>user data: <%= @provider.class %> </p>
+              
               <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
 
               <%= p @provider.user %>
