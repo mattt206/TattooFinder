@@ -1,0 +1,48 @@
+.provider-index-card {
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 15px;
+  width: 405px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: space-between;
+  color: black;
+  box-shadow:  0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all 400ms;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  img {
+    height: 230px;
+    object-fit: cover;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  hr {
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+  }
+
+  p {
+    color: black;
+    font-family: "Inter";
+    font-size: 15px;
+    opacity: .7;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+  }
+
+  h3 {
+    font-family: "Roboto";
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+  }
+
+}

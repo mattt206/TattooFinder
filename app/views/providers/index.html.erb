@@ -1,32 +1,40 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-
-        <% @providers.each do |provider| %>
-          <div class="card" style="width: 18rem;">
+  <div class="card-group">>
+      <% @providers.each do |provider| %>
+        <%= link_to provider_path(provider), style: "text-decoration: none; padding: 0px;" do %>
+          <div class="provider-index-card col mt-4">
             <% if provider.photos.attached? %>
-              <div class="row">
-                <% provider.photos.each do |photo|  %>
-                  <div class="col-md-6">
-                    <%= cl_image_tag photo.key, class: "card-img-top img-fluid" %>
-                  </div>
-                <% end %>
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% provider.photos.each do |photo|  %>
+                    <div class="carousel-item active">
+                      <%= cl_image_tag photo.key, class: "card-img-top img-fluid d-block w-100" %>
+                    </div>
+                  <% end %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
             <% else %>
               <%= image_tag "unknow.png", class: "card-img-top img-fluid" %>
             <% end %>
-
-            <div class="card-body" style="background-color:grey;">
-              <div>
-                <h3 class="card-title" style="background-color:black;"><%= provider.name %></h3>
+            <div class="card-body">
+              <div class="bottom-line">
+                <h3 class="card-title"><%= provider.name.titleize %></h3>
+                <hr>
               </div>
-            <h3>  <%= provider.description %>  </h3>
-            <%= link_to "ver", provider_path(provider), type: "button", class: "btn btn-outline-dark"  %>
-          </div>
-
+              <div>
+                <p><%= provider.address %></p>
+              </div>
+            </div>
           </div>
         <% end %>
-
-    </div>
+      <% end %>
   </div>
 </div>
