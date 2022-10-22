@@ -6,8 +6,8 @@
         <p><%= f.input :address %></p>
         <p><%= f.input :start_time %></p>
         <p><%= f.input :close_time %></p>
-        <p><%= f.input :photos, as: :file %></p>
-        <p><%= f.input :photos, as: :file %></p>
+        <p>Selecciona varias fotos de tu estudio: <%= f.input :photos, as: :file, input_html: { multiple: true } %></p>
+
         <div>
           <div class="d-flex flex-wrap" style="background-color:grey;">
             <%= f.input :category, as: :check_boxes, collection: Provider.categories.keys  %>
