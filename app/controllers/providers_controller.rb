@@ -9,17 +9,18 @@ class ProvidersController < ApplicationController
   def show
     # crear array para guardar todos los usuarios registrados
     @userstoselect = []
+    @user = User.new
     @users = User.all
-    # iterar sobre los usuarios resgistrados para mostrarlos en la pagina del estudio
-    @users.each do |user|
-      @userstoselect << [user[:nickname], user[:id]]
+    search
+    @artist = params[:artist]
+    @resultuser = User.where("id = ? ", @artist.to_i)
+    unless @resultuser.empty?
+      @resultuser[0].provider_id = @provider.id
+      @resultuser[0].save
     end
 
-    # @artists = []
-    # user_id = @provider.user_id
-    # @artists << User.where(["id = ?", user_id.to_s])
-
   end
+
 
   def new
     @provider = Provider.new
@@ -52,14 +53,20 @@ class ProvidersController < ApplicationController
 
   private
 
+  def search
+    if params[:query].present?
+      @query = params[:query]
+      @users = User.where("nickname LIKE '%#{@query}%' OR nickname LIKE '%#{@query.upcase}%'")
+    end
+  end
+
+
   def set_providers
     @provider = Provider.find(params[:id])
   end
 
   def providers_params
-    # params.require(:provider).permit(:user_id, :name, { :category => [] }, :description, :address, :latitude, :longitude,
-    # :start_time, :close_time, :photos)
     params.require(:provider).permit(:name, :description, :address, :latitude, :longitude,
-      :start_time, :close_time, :photos, category: [])
+      :start_time, :close_time, photos: [], category: [])
   end
 end
