@@ -14,7 +14,7 @@ Review.destroy_all
 Service.destroy_all
 User.destroy_all
 
-puts "creating privders..."
+puts "creating providers..."
 provider1 = Provider.new(name: "new school Studio", description: "Somos nuevos en la ciudad de medellin, directamente desde new york", category: ['new school', 'ignorant', 'blackwork'], address: "calle 70 # nutibara", latitude: 0, longitude: 0, start_time: DateTime.now, close_time: DateTime.now )
 photostudio = URI.open('https://i.pinimg.com/originals/d6/bd/37/d6bd379f3126df7e63186cd74dc78752.jpg')
 provider1.photos.attach(io: photostudio, filename: 'studio.png', content_type: 'image/png')
