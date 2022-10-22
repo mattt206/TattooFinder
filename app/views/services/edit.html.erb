@@ -1,10 +1,8 @@
-<div class="container">
-  <div class="col-12 mx-auto ">
-    <div>
-      <div class="container mt-5">
-        <h2 class="d-flex justify-content-center">Edit your work</h2>
-      </div>
-      <div>
+<div class="container signup-container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-lg-4">
+      <h2>Edit Your Style</h2>
+      <div class="form-inputs">
         <%= simple_form_for [@service]  do |f| %>
           <p><%= f.input :style, collection: ['Old school','New school', 'blackwork', 'minimalis', 'Neo traditional', 'traditional', 'tribal', 'trash polka', 'other'] %></p>
           <p><%= f.input :price %></p>
@@ -13,10 +11,12 @@
           <div class="form-actions d-flex justify-content-center">
             <%= f.button :submit, "Save", class: "btn btn-outline-dark"%>
             <%#= link_to "Back", services_path, class: "btn btn-outline-dark"%>
-            <%= link_to "Back", service_path(@service), type: "button", class: "btn btn-outline-dark"  %>
           </div>
         <% end %>
       </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= image_tag "https://i.pinimg.com/564x/a7/cf/75/a7cf757296e3b638a6ea1255b9458369.jpg"%>
     </div>
   </div>
 </div>
