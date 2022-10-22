@@ -1,26 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class = "col-12">
-      <%= simple_form_for [@provider]  do |f| %>
+<div class="container signup-container">
+  <div class="row justify-content-center align-items-center">
+    <div class = "col-12 col-lg-4">
+      <h2>New Studio</h2>
+      <div class="form-inputs">
+        <%= simple_form_for [@provider]  do |f| %>
         <p><%= f.input :name %></p>
         <p><%= f.input :address %></p>
         <p><%= f.input :start_time %></p>
         <p><%= f.input :close_time %></p>
-        <p>Selecciona varias fotos de tu estudio: <%= f.input :photos, as: :file, input_html: { multiple: true } %></p>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
-        <div>
-          <div class="d-flex flex-wrap" style="background-color:grey;">
-            <%= f.input :category, as: :check_boxes, collection: Provider.categories.keys  %>
+          <div style="background-color:grey;">
+            <%= f.input :category, as: :check_boxes, collection: Provider.categories.keys %>
             <%#= f.collection_check_boxes :category, Provider.categories, :first, :last, include_blank: false %>
           </div>
-        </div>
-
+      </div>
         <div class="form-actions d-flex justify-content-center">
           <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
         </div>
-          <%= link_to "Back", providers_path, class: "btn btn-primary"%>
       <% end %>
-
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= image_tag "https://images.unsplash.com/photo-1608666599953-b951163495f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1466&q=80"%>
     </div>
   </div>
 </div>
