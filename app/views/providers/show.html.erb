@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
 
- <!---studio profile---->
+    <!---studio profile---->
 
-    <div class="col-8 mb-2">
-          <div class="card" >
+      <div class="col-8 mb-2"> <!--columna de estudio-->
+        <div class="card" >
             <% if @provider.photos.attached? %>
               <div class="row">
                 <% @provider.photos.each do |photo|  %>
@@ -20,92 +20,95 @@
               <div>
                 <h3 class="card-title" style="background-color:black;"><%= @provider.name %></h3>
               </div>
-                <p> <%= @provider.description %>  </p>
-
-                <h4> Categories:  </h4>
-                 <div class="m-2">
+              <p> <%= @provider.description %>  </p>
+              <h4> Categories:  </h4>
+                <div class="m-2">
                   <% @provider.category.each do |category| %>
                     <span class="badge badge-pill badge-light"> <%= category %> </span>
                   <% end %>
-                 </div>
+                </div>
               <div class="m-2">
                   <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
                   <%= link_to "Edit", edit_provider_path(@provider), class: "btn btn-outline-dark" %>
                   <%= link_to "Delete", provider_path(@provider), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
               </div>
-
             </div>
           </div>
+        </div>
+        <!---- mapa  --->
+        <div class = "col-4 mb-2" style="background-color:grey;">
+          <%= @provider.latitude %>
+          <%= @provider.longitude %>
+        </div>
+      </div><!--columna de estudio-->
 
+<!--2da fila artistas y agregar nuevso artistas-->
 
-    </div>
-    <!---- mapa  --->
-    <div class = "col-4 mb-2" style="background-color:grey;">
-      <%= @provider.latitude %>
-      <%= @provider.longitude %>
-    </div>
-  </div>
   <!---- artistas del studio  --->
       <div class="row">
-          <div class="col-8 mb-2">
+          <div class="col-8 mb-1">
+
             <div class="card" >
               <div class="card-body" style="background-color:grey;">
-
+                <div class="mx-auto">
+                <h2>our artists:</h2>
+                </div>
 
                 <% @users.each do |user|   %>
                   <% if user.provider_id == @provider.id %>
-                    <div class = "card" style="background-color:black;">
-                      <p> nickname </p><%= user.nickname %>
-
-                      <%= simple_form_for provider_path(@provider), method: :get do |f| %>
-                        <%= f.hidden_field :provider_id, value: user.id, name: "artist" %>
-                        <div class="form-actions d-flex justify-content-center">
-                          <%#= f.button :submit, "Artist profile", class: "btn btn-success mx-2 my-3"%>
-                          <%#= link_to "profile",  profile_path %>
-                        </div>
+                    <div class = "card m-2" style="background-color:black;">
+                      <div>
+                        <p> nickname </p><%= user.nickname %>
+                          <% if user.photo.attached? %>
+                            <%= cl_image_tag user.photo.key, class: "avatar-index img-fluid" %>
+                          <% else %>
+                            <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
+                          <% end %>
+                      </div>
+                      <div>
+                         <%= link_to "Artist profile", profile_path(user.id), class: "btn btn-outline-light"%>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+                <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
               </div>
-              <%= link_to "Artist profile", profile_path(user.id), class: "btn btn-outline-dark"%>
             </div>
-                      <% end %>
-
-                    </div>
-                    <% end %>
-                  <% end %>
-              <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
-
-
           </div>
 
-        </div>
+           <!---- add new artist to your studio  --->
+        <div class = "col-4 mb-1" style="background-color:red;" >
 
- <!---- add new artist to your studio  --->
-        <div class = "col-12 mb-2" style="background-color:grey;" >
-              <p>add new artist</p>
-            <%= form_tag provider_path(@provider), method: :get do  %>
-              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
-              <%= submit_tag "Search", class: "btn btn-primary" %>
-            <% end %>
-            <% @users.each do |user| %>
-              <div class="mx-auto card p-3 my-3 text-black d-flex flex-row align-items-center justify-content-around w-25">
-                <%= user.nickname %>
-
-                  <%= simple_form_for provider_path(@provider), url: provider_path(@provider), method: :get do |f| %>
-                    <%= f.hidden_field :provider_id, value: user.id, name: "artist" %>
-
-                    <div class="form-actions d-flex justify-content-center">
-                      <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
-                    </div>
+              <div class="mx-auto">
+                <h2>add new artist</h2>
+                  <%= form_tag provider_path(@provider), method: :get do  %>
+                  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
+                  <%= submit_tag "Search", class: "btn btn-primary" %>
                   <% end %>
-
               </div>
-
+            <!--mostrar los artistas que pertenecesn al estudio-->
+            <% if params[:query].nil? %>
+            <% else %>
+              <% @users.each do |user| %>
+                <div class="mx-auto card p-3 my-3 text-black d-flex flex-row align-items-center justify-content-around w-25">
+                    <%= user.nickname %>
+                    <%= simple_form_for provider_path(@provider), url: provider_path(@provider), method: :get do |f| %>
+                      <%= f.hidden_field :provider_id, value: user.id, name: "artist" %>
+                      <div class="form-actions d-flex justify-content-center">
+                        <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
+                      </div>
+                    <% end %>
+                </div>
+              <% end %>
             <% end %>
-
-
-          </div>
         </div>
-    </div>
 
 
 
-</div>
+
+
+
+
+    </div><!--col-12-->
+  </div> <!--row-->
+</div> <!--container-->

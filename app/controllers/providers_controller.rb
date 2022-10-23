@@ -61,7 +61,7 @@ class ProvidersController < ApplicationController
   def search
     if params[:query].present?
       @query = params[:query]
-      @users = User.where("nickname LIKE '%#{@query}%' OR nickname LIKE '%#{@query.upcase}%'")
+      @users = User.where("nickname LIKE '%#{@query}%' OR nickname LIKE '%#{@query.upcase}%' OR nickname LIKE '%#{@query.downcase}%'")
     end
   end
 
