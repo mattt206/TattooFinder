@@ -50,6 +50,11 @@ class ProvidersController < ApplicationController
     redirect_to providers_path, status: :see_other
   end
 
+  def redirect
+    @artist = params[:artist]
+    @resultuser = User.where("id = ? ", @artist.to_i)
+    redirect_to users_profile_path(@resultuser)
+  end
 
   private
 
@@ -59,6 +64,7 @@ class ProvidersController < ApplicationController
       @users = User.where("nickname LIKE '%#{@query}%' OR nickname LIKE '%#{@query.upcase}%'")
     end
   end
+
 
 
   def set_providers

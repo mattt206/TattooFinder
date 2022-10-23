@@ -1,2 +1,19 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+ <div class="container">
+  <div class="row">
+    <div class="col-12">
+          <div style="background-color:grey;">
+          <h2>ARTIST: </h2>
+            <H3><%= @user.nickname %></H3>
+          </div>
+              <div>
+                <% if @user.photo.attached? %>
+                  <%= cl_image_tag @user.photo.key, class: "card-img-top img-fluid"%>
+                <% else %>
+                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
+                <% end %>
+              </div>
+
+
+    </div> <!--col-12-->
+  </div> <!--row-->
+ </div> <!--container-->

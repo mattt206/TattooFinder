@@ -51,27 +51,35 @@
             <div class="card" >
               <div class="card-body" style="background-color:grey;">
 
-              <p>user data: <%= @provider.class %> </p>
 
+                <% @users.each do |user|   %>
+                  <% if user.provider_id == @provider.id %>
+                    <div class = "card" style="background-color:black;">
+                      <p> nickname </p><%= user.nickname %>
+
+                      <%= simple_form_for provider_path(@provider), method: :get do |f| %>
+                        <%= f.hidden_field :provider_id, value: user.id, name: "artist" %>
+                        <div class="form-actions d-flex justify-content-center">
+                          <%#= f.button :submit, "Artist profile", class: "btn btn-success mx-2 my-3"%>
+                          <%#= link_to "profile",  profile_path %>
+                        </div>
+              </div>
+              <%= link_to "Artist profile", profile_path(user.id), class: "btn btn-outline-dark"%>
+            </div>
+                      <% end %>
+
+                    </div>
+                    <% end %>
+                  <% end %>
               <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
 
-                <p>info artis</p>
-              </div>
-              <%= link_to "Artist profile", providers_path, class: "btn btn-outline-dark"%>
-            </div>
+
           </div>
-
-        <!---- add new artist to your studio  --->
-
-
 
         </div>
 
-
+ <!---- add new artist to your studio  --->
         <div class = "col-12 mb-2" style="background-color:grey;" >
-              <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
-
-              <%#= p @provider.user.class %>
               <p>add new artist</p>
             <%= form_tag provider_path(@provider), method: :get do  %>
               <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
@@ -88,23 +96,7 @@
                       <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
                     </div>
                   <% end %>
-  <!---
-            <%= form_tag provider_path(@provider), method: :get do  %>
-              <%#= user.provider_id = @provider.id  %> <% user.save %>
-              <%= hidden_field_tag :result, params[:result], class: "form-control", value: user  %>
-              <%= submit_tag "save", class: "btn btn-primary" %>
-              <%= user.nickname %>
-              <% if !@result.nil? %>
-              <p>guardo bien</p>
-                <% else %>
-                <p> pailas sigue intentado</p>
-              <% end %>
-            <% end %>
---->
-              <%# <form value="id" method="get" >
-              <input type="text" value="hi" readonly>
-                <button type="submit" class="btn btn-primary btn-lg my-1 " >+</button>
-              </form> %>
+
               </div>
 
             <% end %>
