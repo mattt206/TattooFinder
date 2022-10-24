@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-3">
 
     <!---studio profile---->
 
@@ -29,8 +29,8 @@
                 </div>
               <div class="m-2">
                   <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
-                  <%= link_to "Edit", edit_provider_path(@provider), class: "btn btn-outline-dark" %>
-                  <%= link_to "Delete", provider_path(@provider), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  <%#= link_to "Edit", edit_provider_path(@provider), class: "btn btn-outline-dark" %>
+                  <%#= link_to "Delete", provider_path(@provider), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@
           </div>
 
            <!---- add new artist to your studio  --->
-        <div class = "col-4 mb-1" style="background-color:red;" >
+        <div class = "col-4 mb-1" style="background-color:grey;" >
 
               <div class="mx-auto">
                 <h2>add new artist</h2>

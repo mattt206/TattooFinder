@@ -41,9 +41,13 @@
           </li>
         <% else %>
           <li class="index-nav nav-item d-flex items-center">
+             <li class="n-nav-item">
+            <%= link_to 'Studios',  providers_path, class: "nav-link" %>
+          </li>
             <%= link_to "Explore", services_path, class: "nav-link " %>
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
+
         <% end %>
       </ul>
     </div>
