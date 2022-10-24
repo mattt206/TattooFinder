@@ -6,8 +6,8 @@
         <%= simple_form_for [@provider]  do |f| %>
         <p><%= f.input :name %></p>
         <p><%= f.input :address %></p>
-        <p><%= f.input :start_time %></p>
-        <p><%= f.input :close_time %></p>
+        <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
+        <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
           <div style="background-color:grey;">
