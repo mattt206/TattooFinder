@@ -9,7 +9,6 @@ class UsersController < ApplicationController
       end
 
     end
-    
     # redirect_to users_profile_path(@resultuser)
   end
 
