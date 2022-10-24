@@ -6,7 +6,19 @@ body {
 }
 
 .container h2 {
-  color: black;
+  color: #06081e;
   margin-top: 50px;
   font-size: 50px;
+}
+
+#botons {
+  background-color: #06081e;
+  color: #ffff00;
+  font-weight: bold;
+
+  &:hover{
+    background-color: #ffff00;
+    color: #06081e;
+    font-weight: bold;
+  }
 }
