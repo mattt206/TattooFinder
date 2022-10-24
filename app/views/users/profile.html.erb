@@ -3,6 +3,8 @@
     <div class="col-12">
           <div style="background-color:grey;">
           <h2>ARTIST: </h2>
+          <% if !@user.nil? %>
+
             <H3><%= @user.nickname %></H3>
           </div>
               <div>
@@ -12,6 +14,7 @@
                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
                 <% end %>
               </div>
+          <% end %>
 
 
     </div> <!--col-12-->
