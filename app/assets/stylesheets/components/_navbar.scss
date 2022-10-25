@@ -1,8 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #06081e;
+  background: whitesmoke;
   align-items: center;
-  height: 80px;
+  height: 70px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -15,14 +15,16 @@
 
 .navbar-lewagon a {
   text-decoration: none;
-  color: #ffff00;
+  color: #696969;
   font-family: "roboto";
-  font-weight: 400;
+  font-weight: bold;
   font-size: 18px;
   height: fit-content;
 
+
   &:hover{
-    color: whitesmoke;
+    color: #081137;
+
   }
 }
 
