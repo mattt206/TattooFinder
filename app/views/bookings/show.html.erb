@@ -1,24 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 my-2 py-2">
-      <div class="show-card mt-3">
+
+    <div class="col-8 my-1 py-1">
+        <div class="show-card mt-1">
               <div class="show-card-image">
+              <p>hola</p>
 
               </div>
-              <div class="show-card-body" style="background-color:grey;">
+              <div  style="background-color:grey;">
                 <h2 > datos: <%#= @booking.videogame.title.titleize %></h2>
-                <h3>artist:  <%=  @artist.nickname   %> </h3>
-                <h3> Plataforma: <%= @booking.user.nickname %></h3>
-                <h4 class="card-text">Desde:   <%= @booking.start_time.to_date %></h4>
-                <h4 class="card-text">Hasta:   <%= @booking.end_time.to_date %></h4>
+                <h3> Booking code: <%= @booking.id %></h3>
+                <h3> User: <%= @booking.user.nickname %></h3>
+                <h4 class="card-text">Dia: <%= @booking.start_time.to_date %></h4>
+                <h4 class="card-text">hora: <%= @booking.start_time.hour %> AM</h4>
+                <h4 class="card-text">Tiempo estimado:   <%= @booking.end_time.hour - @booking.start_time.hour %> horas</h4>
                 <%#= hacer un if si esta alquilado o no  %>
                 <%#= link_to "Delete", videogame_path(game), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                 <div class="show-card-links">
-                  <%= link_to "Back", profile_path(@booking.user), class: "btn btn-success mx-2"%>
+                <!--my bookings-->
                   <%= link_to "Delete", booking_path(@booking), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                 </div>
               </div>
+          </div>
       </div>
+      <div class="col-4 my-1 py-1">
+        <div class="show-card mt-1">
+            <div class="show-card-image">
+              <p>hola</p>
+
+            </div>
+            <div  style="background-color:black;">
+              <h2 > datos: <%#= @booking.videogame.title.titleize %></h2>
+              <h3>artist:  <%=  @artist.nickname   %> </h3>
+              <div class="show-card-links">
+                <%= link_to "Back", profile_path(@artist.id), class: "btn btn-success mx-2"%>
+            </div>
+        </div>
+      </div>
+
     </div> <!--col-8-->
   </div> <!--row-->
 </div> <!--container-->

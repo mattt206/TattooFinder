@@ -15,9 +15,11 @@
                 <% end %>
               </div>
             <% end %>
-                <form action= "<%= @user.id %>/bookings/new" >
-                  <button type="submit" class= "btn btn-success" > <p>Reservar ahora</p></button>
-                </form>
+                <%= link_to "Booking",  new_user_booking_path(@user.id), class: "btn btn-success mx-2"%>
+                <%= link_to "Back to styles", services_path, class: "btn btn-success mx-2"%>
+                <%= link_to "Back to studios", providers_path, class: "btn btn-success mx-2"%>
+
+
 
     </div> <!--col-12-->
   </div> <!--row-->
