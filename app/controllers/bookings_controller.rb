@@ -29,9 +29,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @user.id = @booking.user_id
+    @id = @booking.artist_info
     @booking.destroy
-    redirect_to profile_path(@user.id), status: :see_other
+    redirect_to profile_path(@id), status: :see_other
   end
 
   private
