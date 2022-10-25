@@ -2,20 +2,22 @@
   <div class="row">
     <div class="col-12">
           <div style="background-color:grey;">
-          <h2>ARTIST: </h2>
-          <% if !@user.nil? %>
-
+            <h2>ARTIST: </h2>
+            <% if @user.nil? %>
+            <% else %>
             <H3><%= @user.nickname %></H3>
           </div>
               <div>
                 <% if @user.photo.attached? %>
                   <%= cl_image_tag @user.photo.key, class: "card-img-top img-fluid" %>
                 <% else %>
-                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
+                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index img-fluid" %>
                 <% end %>
               </div>
-          <% end %>
-
+            <% end %>
+                <form action= "<%= @user.id %>/bookings/new" >
+                  <button type="submit" class= "btn btn-success" > <p>Reservar ahora</p></button>
+                </form>
 
     </div> <!--col-12-->
   </div> <!--row-->

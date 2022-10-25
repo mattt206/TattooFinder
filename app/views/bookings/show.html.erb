@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 my-2 py-2">
+      <div class="show-card mt-3">
+              <div class="show-card-image">
+
+              </div>
+              <div class="show-card-body" style="background-color:grey;">
+                <h2 > datos: <%#= @booking.videogame.title.titleize %></h2>
+                <h3>artist:  <%=  @artist.nickname   %> </h3>
+                <h3> Plataforma: <%= @booking.user.nickname %></h3>
+                <h4 class="card-text">Desde:   <%= @booking.start_time.to_date %></h4>
+                <h4 class="card-text">Hasta:   <%= @booking.end_time.to_date %></h4>
+                <%#= hacer un if si esta alquilado o no  %>
+                <%#= link_to "Delete", videogame_path(game), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <div class="show-card-links">
+                  <%= link_to "Back", profile_path(@booking.user), class: "btn btn-success mx-2"%>
+                  <%= link_to "Delete", booking_path(@booking), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                </div>
+              </div>
+      </div>
+    </div> <!--col-8-->
+  </div> <!--row-->
+</div> <!--container-->
