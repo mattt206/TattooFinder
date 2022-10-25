@@ -2,7 +2,6 @@
   justify-content: space-between;
   background: whitesmoke;
   align-items: center;
-  height: 70px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,21 +9,22 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 110px;
+  width: 90px;
+  margin: 2px;
+
 }
 
 .navbar-lewagon a {
   text-decoration: none;
-  color: #696969;
+  color: #07080A;
   font-family: "roboto";
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   height: fit-content;
 
 
   &:hover{
-    color: #081137;
-
+    color: #3d3838;
   }
 }
 
