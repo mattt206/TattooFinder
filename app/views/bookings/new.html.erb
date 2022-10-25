@@ -1,0 +1,35 @@
+<div class="container">
+<div class="row">
+      <div class="col-8 mx-auto">
+        <div class="card mt-5">
+          <div>
+            <h2 class="d-flex justify-content-center">Booking</h2>
+          </div>
+          <div>
+            <%= simple_form_for [@user, @booking]  do |f| %>
+              <p><%= f.input :start_time %></p>
+              <p><%= f.input :end_time %></p>
+              <p><%= f.input_field :artist, as: :hidden, value: @user.id  %></p>
+
+              <%= f.submit "Save", class: "btn btn-success mx-2 my-3" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!--artist info-->
+      <div class="col-4 mx-auto" >
+        <div class="card mt-5" style="background-color:grey;">
+          <div>
+            <h2 class="d-flex justify-content-center" >Artist</h2>
+          </div>
+          <div>
+            <%= simple_form_for [@booking]  do |f| %>
+              <%= @user.nickname %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+  </div> <!--row-->
+</div> <!--container-->

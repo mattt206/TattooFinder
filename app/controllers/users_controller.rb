@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def profile
+    @user = User.find(params[:id])
     if @user.nil?
       if User.find(params[:id]).nil?
         @user = User.find(params[:id])
