@@ -1,26 +1,5 @@
 // Specific CSS for your home-page
-body {
-  background-color: #F8F8F8;
-  color: #fff;
-  margin: 0;
-}
-
-.container h2 {
-  color: #081137;
+h2 {
   margin-top: 50px;
   font-size: 50px;
-}
-
-#botons {
-  background-color: #696969;
-  color: whitesmoke;
-  font-weight: bold;
-  font-style: italic;
-
-  &:hover{
-    background-color: #081137;
-    color: whitesmoke;
-    font-weight: bold;
-    font-style: italic;
-  }
 }

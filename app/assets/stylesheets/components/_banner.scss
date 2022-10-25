@@ -34,6 +34,12 @@
   letter-spacing: 4px;
   margin-bottom: 50px;
   width: 600px;
+  color: white;
+}
+
+#title-banner {
+  color: white;
+  font-size: 28px;
 }
 
 p {
@@ -43,28 +49,26 @@ p {
   font-family: "inter";
 }
 
-.banner .btn-primary {
+.btn-success {
+  background-color: #292525;
+  font-weight: 600;
   color: white;
-  background-color: #3D3737;
-  font-weight: 500;
-  font-family: "inter";
+  border-radius: 0px 8px 8px 0px;
   border: none;
-  border-radius: 0px 10px 10px 0px;
+  background-size: cover;
 
-
-  &:hover {
+  &:hover{
     background-color: #07080A;
+    color: white;
   }
-
 }
 
 .banner .form-control {
   width: 500px;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 8px 0px 0px 8px;
 }
 
 .banner .input-group {
   width: 700px;
   height: 40px;
 }
-
