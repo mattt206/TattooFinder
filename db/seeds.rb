@@ -8,11 +8,11 @@
 require 'open-uri'
 
 puts "Cleaning database..."
-Provider.destroy_all
-Booking.destroy_all
-Review.destroy_all
-Service.destroy_all
-User.destroy_all
+Service.delete_all
+User.delete_all
+Provider.delete_all
+Booking.delete_all
+Review.delete_all
 
 puts "creating providers..."
 provider1 = Provider.new(name: "new school Studio", description: "Somos nuevos en la ciudad de medellin, directamente desde new york", category: ['new school', 'ignorant', 'blackwork'], address: "calle 70 # nutibara", latitude: 0, longitude: 0, start_time: DateTime.now, close_time: DateTime.now )
@@ -24,22 +24,22 @@ provider1.save
 puts "providers ready"
 
 puts "creating users..."
-user1 = User.new(email: "kvond@gmail.com", password: "123456", nickname: "Katt-D", provider_id: provider1.id)
+user1 = User.new(email: "kvond@gmail.com", password: "123456", nickname: "Katt-D", provider_id: provider1.id, user_type: "yes")
 photo1 = URI.open('https://upload.wikimedia.org/wikipedia/commons/e/ee/KVD_2016_SEPHORA_WINDOW_037.jpg')
 user1.photo.attach(io: photo1, filename: 'katvond.png', content_type: 'image/png')
 user1.save
 
-user2 = User.new(email: "paulb@gmail.com", password: "123456", nickname: "pualb", provider_id: provider1.id)
+user2 = User.new(email: "paulb@gmail.com", password: "123456", nickname: "pualb", provider_id: provider1.id, user_type: "yes")
 photo2 = URI.open('https://live.staticflickr.com/2944/15390181172_3db69db290_b.jpg')
 user2.photo.attach(io: photo2, filename: 'paulbooth.png', content_type: 'image/png')
 user2.save
 
-user3 = User.new(email: "nunez@gmail.com", password: "123456", nickname: "nunez22")
+user3 = User.new(email: "nunez@gmail.com", password: "123456", nickname: "nunez22", user_type: "yes")
 photo3 = URI.open('https://vz.cnwimg.com/wp-content/uploads/2012/01/Chris-Nunez.jpg')
 user3.photo.attach(io: photo3, filename: 'nunez.png', content_type: 'image/png')
 user3.save
 
-user4 = User.new(email: "user1@gmail.com", password: "123456", nickname: "juanjo")
+user4 = User.new(email: "user1@gmail.com", password: "123456", nickname: "juanjo", user_type: "no")
 puts "users ready"
 
 puts "creating services..."
@@ -68,10 +68,10 @@ service4.save
 puts "services ready"
 
 puts "creating bookings..."
-booking1 = Booking.new(user_id: user4.id, service_id: service1.id, start_time: DateTime.now,
+booking1 = Booking.new(user_id: user4.id, start_time: DateTime.now,
                       end_time: DateTime.now, status: false, payment_status: "por validar")
 booking1.save
-booking2 = Booking.new(user_id: user1.id, service_id: service3.id, start_time: DateTime.now,
+booking2 = Booking.new(user_id: user1.id, start_time: DateTime.now,
   end_time: DateTime.now, status: false, payment_status: "por validar")
 booking2.save
 
