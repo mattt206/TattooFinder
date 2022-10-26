@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def profile
+    @booking = Booking.all
     @user = User.find(params[:id])
     if @user.nil?
       if User.find(params[:id]).nil?
@@ -8,6 +9,17 @@ class UsersController < ApplicationController
         @resultuser = User.where("id = ? ", @artist.to_i)
       end
     end
-    # redirect_to users_profile_path(@resultuser)
+    if !params[:button].nil?
+      pending
+    end
+  end
+
+  private
+
+  def pending
+    @apoitment = Booking.find(params[:button].to_i)
+    @apoitment.status = true
+    @apoitment.save
+
   end
 end

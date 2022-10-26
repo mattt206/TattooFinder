@@ -1,39 +1,52 @@
 <div class="container">
   <div class="row">
-
     <div class="col-8 my-1 py-1">
+        <!--show booking card with booking info-->
         <div class="show-card mt-1">
-              <div class="show-card-image">
-              <p>hola</p>
 
-              </div>
-              <div  style="background-color:grey;">
-                <h2 > datos: <%#= @booking.videogame.title.titleize %></h2>
-                <h3> Booking code: <%= @booking.id %></h3>
-                <h3> User: <%= @booking.user.nickname %></h3>
+              <div  style="background-color:grey;" class="p-1">
+                <h2 style= " text-align:center;" > Client</h2>
+                <h4> Booking code: <%= @booking.id %></h4>
+                <h4> Nickname: <%= @booking.user.nickname %></h4>
                 <h4 class="card-text">Dia: <%= @booking.start_time.to_date %></h4>
-                <h4 class="card-text">hora: <%= @booking.start_time.hour %> AM</h4>
+                <h4 class="card-text">hora: <%= @booking.start_time.hour %> pm</h4>
                 <h4 class="card-text">Tiempo estimado:   <%= @booking.end_time.hour - @booking.start_time.hour %> horas</h4>
-                <%#= hacer un if si esta alquilado o no  %>
-                <%#= link_to "Delete", videogame_path(game), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-                <div class="show-card-links">
-                <!--my bookings-->
-                  <%= link_to "Delete", booking_path(@booking), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <div class="d-flex justify-content-end mp-2">
+                <% if @booking.status == false %>
+                  <h5 class="badge bg-danger mx-2 rounded-pill"> Waiting to artist confirmation </h5>
+                <% else %>
+                  <!--h5 class="badge bg-success mx-2 rounded-pill"> Appoitment confirm! get ready for your new tattoo </h5-->
+                <% end %>
                 </div>
+                <% if @booking.user_id == current_user.id %>
+                <div class="show-card-links my-2">
+                  <%= link_to "Delete", booking_path(@booking), class: "btn btn-success mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                </div>
+                <% end %>
               </div>
           </div>
       </div>
+      <!--show booking card with the artist info-->
       <div class="col-4 my-1 py-1">
         <div class="show-card mt-1">
-            <div class="show-card-image">
-              <p>hola</p>
-
-            </div>
-            <div  style="background-color:black;">
-              <h2 > datos: <%#= @booking.videogame.title.titleize %></h2>
-              <h3>artist:  <%=  @artist.nickname   %> </h3>
-              <div class="show-card-links">
-                <%= link_to "Back", profile_path(@artist.id), class: "btn btn-success mx-2"%>
+            <div  style="background-color:grey;" class="p-2 mx-auto" >
+              <h2 style= "text-align:center;"> Artist: </h2>
+              <div class= "d-flex justify-content-around">
+                <% if @artist.photo.attached? %>
+                  <%= cl_image_tag @artist.photo.key, class: "avatar" %>
+                <% else %>
+                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar" %>
+                <% end %>
+                <h4>   <%=  @artist.nickname   %> </h4>
+              </div>
+                <% if @booking.status == true %>
+                  <div class="mx-auto m-2">
+                    <span class="badge bg-success mx-2 rounded-pill">Appoitment confirm! get ready for your new tattoo</span>
+                  </div>
+                <% end %>
+                <div class="d-flex justify-content-center m-2">
+                  <%= link_to "Back to artist profile", profile_path(@artist.id), class: "btn btn-success mx-2"%>
+                </div>
             </div>
         </div>
       </div>
