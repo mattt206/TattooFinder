@@ -1,35 +1,31 @@
-<div class="container">
-<div class="row">
-      <div class="col-8 mx-auto">
-        <div class="card mt-5">
-          <div>
-            <h2 class="d-flex justify-content-center">Booking</h2>
-          </div>
-          <div>
-            <%= simple_form_for [@user, @booking]  do |f| %>
-              <p><%= f.input :start_time %></p>
-              <p><%= f.input :end_time %></p>
-              <p><%= f.input_field :artist, as: :hidden, value: @user.id  %></p>
-
-              <%= f.submit "Save", class: "btn btn-success mx-2 my-3" %>
-            <% end %>
-          </div>
-        </div>
+<div class="container signup-container">
+  <div class="row justify-content-center align-items-center">
+    <div class = "col-12 col-lg-4">
+      <div class="d-flex align-items-center">
+        <h2 class="me-2">Booking</h2>
+        <h4>with <%= @user.nickname %></h4>
       </div>
-      <!--artist info-->
-      <div class="col-4 mx-auto" >
-        <div class="card mt-5" style="background-color:grey;">
-          <div>
-            <h2 class="d-flex justify-content-center" >Artist</h2>
-          </div>
-          <div>
-            <%= simple_form_for [@booking]  do |f| %>
-              <%= @user.nickname %>
-            <% end %>
-          </div>
-        </div>
+      <div>
+        <%= simple_form_for [@user, @booking]  do |f| %>
+          <p><%= f.input :start_time %></p>
+          <p><%= f.input :end_time %></p>
+          <p><%= f.input_field :artist, as: :hidden, value: @user.id  %></p>
+          <%= f.submit "Save", class: "btn btn-success mx-2 my-3" %>
+        <% end %>
       </div>
+    </div>
 
-
-  </div> <!--row-->
-</div> <!--container-->
+    <!--artist info-->
+    <div class="col-12 col-lg-4" >
+      <div>
+        <%= simple_form_for [@booking]  do |f| %>
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key%>
+          <% else %>
+            <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg"%>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
