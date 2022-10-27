@@ -1,10 +1,10 @@
 .banner {
-  background-image: url("https://preview.redd.it/ffgttl03ygu91.jpg?width=4500&format=pjpg&auto=webp&s=a4e1e2ad96774da0693d1b18b9617a505e6d3c97");
+  background-image: url("/assets/fondo1.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 650px;
   background-size: cover;
-  background-position: 0px -800px;
+  background-position: 0px -60px;
   display: flex;
   align-items: center;
 }
@@ -68,12 +68,12 @@ p {
 .btn-register {
   width: 550px;
   border-radius: 8px;
-  background-color: #07080A;
-  color: white;
+  background-color: whitesmoke;
+  color: #07080A;
   padding: 6px;
 
   &:hover{
-    background-color: #292525;
+    background-color: #07080A;
     color: white;
   }
 }
