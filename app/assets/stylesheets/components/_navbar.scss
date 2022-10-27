@@ -22,12 +22,35 @@
   font-size: 18px;
   height: fit-content;
 
-
   &:hover{
     color: #3d3838;
   }
 }
 
+.navbar-lewagon .nav-link-login {
+  background-color: #3d3838;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0px 10px;
+
+  &:hover{
+    background-color: #07080A;
+    color: white;
+  }
+}
+
 .items-center {
   align-items: center;
+}
+
+.container-fluid .form-control {
+  width: 450px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.container-fluid .input-group {
+  width: 700px;
+  height: 40px;
+  padding: 0px 10px;
 }

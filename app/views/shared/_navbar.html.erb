@@ -3,13 +3,19 @@
     <div class="items-center">
       <ul class="navbar-nav me-auto">
         <%= link_to root_path, class: "navbar-brand" do %>
-          <%= image_tag ("/assets/logosencilloazul.png") %>
-         <% end %>
+        <%= image_tag ("/assets/logosencilloazul.png") %>
+        <% end %>
         <li class="index-nav nav-item d-flex items-center">
-          <%= link_to "Explore", services_path, class: "nav-link " %>
-          <%= link_to 'Studios',  providers_path, class: "nav-link" %>
+          <div class="input-group" data-controller="home">
+            <form action="services" class="d-flex justify-content-center" data-action="click->home#busqueda" >
+              <input action = "services" type="search" class="form-control" placeholder="City, Artist, Style, etc..." name="query" aria-describedby="button-addon2" value="" data-home-target="search" id="busq">
+              <button  action = "services" class="btn btn-success" type="submit" class="form-control" data-home-target="search"  id="botons" >Search</button>
+            </form>
+          </div>
+
         </li>
       </ul>
+
 
       <div class="ml-auto">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +50,9 @@
           </li>
         <% else %>
           <li class="index-nav nav-item d-flex items-center">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Explore", services_path, class: "nav-link " %>
+            <%= link_to 'Studios',  providers_path, class: "nav-link" %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link-login" %>
           </li>
 
         <% end %>
