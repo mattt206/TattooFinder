@@ -1,0 +1,27 @@
+.btn-primary {
+  background-color: #292525;
+  font-weight: 600;
+  color: white;
+  border-radius: 0px 8px 8px 0px;
+  border: none;
+  background-size: cover;
+
+  &:hover{
+    background-color: #07080A;
+    color: white;
+  }
+}
+
+.btn-success {
+  background-color: #292525;
+  font-weight: 600;
+  color: white;
+  border-radius: 8px 8px 8px 8px;
+  border: none;
+  background-size: cover;
+
+  &:hover{
+    background-color: #07080A;
+    color: white;
+  }
+}
