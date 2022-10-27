@@ -32,7 +32,7 @@
   font-weight: bold;
   font-size: 58px;
   letter-spacing: 4px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   width: 600px;
   color: white;
 
@@ -64,12 +64,26 @@ p {
   }
 }
 
-.banner .form-control {
-  width: 500px;
-  border-radius: 8px 0px 0px 8px;
+
+.btn-register {
+  width: 550px;
+  border-radius: 8px;
+  background-color: #07080A;
+  color: white;
+  padding: 6px;
+
+  &:hover{
+    background-color: #292525;
+    color: white;
+  }
 }
 
-.banner .input-group {
-  width: 700px;
-  height: 40px;
-}
+// .banner .form-control {
+//   width: 500px;
+//   border-radius: 8px 0px 0px 8px;
+// }
+
+// .banner .input-group {
+//   width: 700px;
+//   height: 40px;
+// }
