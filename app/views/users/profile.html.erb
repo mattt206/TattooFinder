@@ -1,27 +1,13 @@
- <div class="container">
-  <div class="row">
-    <div class="col-12">
-
-          <div style="background-color:grey;">
-            <h2>ARTIST: </h2>
-            <% if @user.nil? %>
-            <% else %>
-            <H3><%= @user.nickname %></H3>
-          </div>
-              <div>
-                <% if @user.photo.attached? %>
-                  <%= cl_image_tag @user.photo.key, class: "card-img-top img-fluid" %>
-                <% else %>
-                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index img-fluid" %>
-                <% end %>
-              </div>
-            <% end %>
+<div class="profile-container">
+  <div class ="banner-profile">
+    <div class="container">
+      <div class="row">
+         <div class="col-12">
             <% if params[:id].to_i != current_user.id %>
-                <%= link_to "Booking",  new_user_booking_path(@user.id), class: "btn btn-success mx-2"%>
+              <%= render "artist_profile" %>
+            <% elsif params[:id].to_i == current_user.id %>
+              <%= render "current_profile" %>
             <% end %>
-                <%= link_to "Back to styles", services_path, class: "btn btn-success mx-2"%>
-                <%= link_to "Back to studios", providers_path, class: "btn btn-success mx-2"%>
-
                 <!--bookings info My appoitments:-->
                 <% if params[:id].to_i == current_user.id %>
                       <div style="background-color:grey; m-2 p-2">
@@ -78,6 +64,8 @@
 
 
 
-    </div> <!--col-12-->
-  </div> <!--row-->
- </div> <!--container-->
+        </div> <!--col-12-->
+      </div> <!--row-->
+    </div> <!--container-->
+  </div>
+</div>
