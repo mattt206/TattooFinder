@@ -20,6 +20,5 @@ class UsersController < ApplicationController
     @apoitment = Booking.find(params[:button].to_i)
     @apoitment.status = true
     @apoitment.save
-
   end
 end

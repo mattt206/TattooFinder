@@ -67,7 +67,59 @@
                 <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img img-responsive img-fluid", style: "object-fit: cover;"%>
               <% end %>
             </div>
-            <h3 class="profile-name"><%= service.style %></h3>
+
+            <div class="d-flex align-items-center mb-4">
+              <div class="flex-shrink-0">
+                <% if @user.photo.attached? %>
+                  <%= cl_image_tag @user.photo.key, class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                <% else %>
+                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                <% end %>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <div class="d-flex flex-row align-items-center mb-2">
+                  <% if @user.nil? %>
+                  <% else %>
+                    <h3 class="mb-0 me-2"><%= @user.nickname %></h3>
+                  <% end %>
+                </div>
+                <div>
+                  <% @user.services.each do |service| %>
+                    <p class="outline-styles" ><%= service.style %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
+                <i class="far fa-clock me-2" style= "text-decoration: none;"></i>
+                <%= link_to "Book now",  new_user_booking_path(@user.id)%>
+              </div>
+              <button type="button" class="btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;"><i
+                class="fas fa-comment me-2"></i>Message</button>
+            </div>
+            <hr>
+            <% if  @user.provider_id.nil? %>
+            <h4>Workplace</h4>
+            <p>Independent artist</p>
+            <% else %>
+              <h4>Workplace</h4>
+              <%= link_to provider_path(@user.provider), style: "text-decoration: none; padding: 0px;" do %>
+              <div class="d-flex align-items-center">
+                <div>
+                  <% if @user.provider.photos.attached? %>
+                    <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                  <% else %>
+                    <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                  <% end %>
+                </div>
+                <div class="ms-3">
+                  <p><strong><%= @user.provider.name %></strong></p>
+                  <p><%= @user.provider.address %></p>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
           </div>
         <% end %>
       <% end %>
