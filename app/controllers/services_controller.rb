@@ -8,6 +8,7 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @user = User.find(@service.user_id)
   end
 
   def new
