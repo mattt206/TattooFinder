@@ -3,7 +3,9 @@
             <div>
               <div class="d-flex align-items-center justify-content-between mb-3">
                 <p class="small mb-0"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
+                <% if ! @user.user_type == "no" %>
                 <h4 class="fw-bold mb-0">Base price $<%= @user.services[0].price %></h4>
+                <% end %>
               </div>
             </div>
             <div class="d-flex align-items-center mb-4">
@@ -36,7 +38,9 @@
             </div>
             <hr>
             <h4>Workplace</h4>
+            <% if !@user.provider_id.nil?  %>
             <%= link_to provider_path(@user.provider), style: "text-decoration: none; padding: 0px;" do %>
+            <% end  %>
             <div class="d-flex align-items-center">
               <div>
                 <% if @user.provider.photos.attached? %>
