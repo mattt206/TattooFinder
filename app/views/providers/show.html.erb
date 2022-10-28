@@ -36,10 +36,10 @@
           </div>
         </div>
         <!---- mapa  --->
-        <div class = "col-4 mb-2" style="background-color:grey;">
-          <%= @provider.latitude %>
-          <%= @provider.longitude %>
-        </div>
+         <div class = "col-4 my-2" id='map' style='width: 350px; height: 500px;' data-controller="map"
+            data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
+            data-map-markers-value=" <%= @markers.to_json %> " >
+          </div>
       </div><!--columna de estudio-->
 
 <!--2da fila artistas y agregar nuevso artistas-->
@@ -70,14 +70,12 @@
                     </div>
                   <% end %>
                 <% end %>
-                <!-- @provider.user iterar sobre cada uno y agregar nuevos -->
               </div>
             </div>
           </div>
 
            <!---- add new artist to your studio  --->
-        <div class = "col-4 mb-1" style="background-color:grey;" >
-
+          <div class = "col-4 mb-1" style="background-color:grey;" >
               <div class="mx-auto">
                 <h2>add new artist</h2>
                   <%= form_tag provider_path(@provider), method: :get do  %>
@@ -100,17 +98,24 @@
                 </div>
               <% end %>
             <% end %>
-        </div>
-
-
-
-
-
+          </div>
+         <!--mostrar los artistas que pertenecesn al estudio-->
 
 
     </div><!--col-12-->
   </div> <!--row-->
 </div> <!--container-->
+
+<div class="container">
+  <div class="row my-3">
+
+  <div class = "col-4 mb-2" id='map' style='width: 400px; height: 300px;' data-controller="map"
+      data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
+      data-map-markers-value=" <%= @markers.to_json %> " >   </div>
+
+
+  </div>
+</div>
 
 
 

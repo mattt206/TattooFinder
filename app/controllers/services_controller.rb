@@ -5,6 +5,7 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service.all
+    map
   end
 
   def show
@@ -40,6 +41,18 @@ class ServicesController < ApplicationController
 
   def dashboard
     @usuario = current_user.id
+  end
+
+  def map
+    @providers = Provider.all
+    @markers = @providers.geocoded.map do |provider|
+      {
+        lat: provider.latitude,
+        lng: provider.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { provider: provider }),
+        image_url: helpers.asset_url("icontattoomachine.png")
+      }
+    end
   end
 
   private
