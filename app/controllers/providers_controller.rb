@@ -7,7 +7,7 @@ class ProvidersController < ApplicationController
   end
 
   def show
-    # crear array para guardar todos los usuarios registrados
+    map
     @userstoselect = []
     @user = User.new
     @users = User.all
@@ -18,9 +18,19 @@ class ProvidersController < ApplicationController
       @resultuser[0].provider_id = @provider.id
       @resultuser[0].save
     end
-
   end
 
+  def map
+    @providers = Provider.all
+    @markers = @providers.geocoded.map do |provider|
+      {
+        lat: provider.latitude,
+        lng: provider.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { provider: provider }),
+        image_url: helpers.asset_url("icontattoomachine.png")
+      }
+    end
+  end
 
   def new
     @provider = Provider.new

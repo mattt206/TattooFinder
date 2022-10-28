@@ -1,34 +1,55 @@
-import { Controller } from "@hotwired/stimulus";
-import mapboxgl from "mapbox-gl";
+import { Controller } from "@hotwired/stimulus"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
+
+// Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["paragraph", "inputfield"];
 
-
-  find(event) {
-    console.log("hi");
-    const query = this.inputfieldTarget;
-    const paragraph = this.paragraphTarget;
-    event.preventDefault();
-
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${query.value}.json?access_token=pk.eyJ1IjoibWF0dHQyMDYiLCJhIjoiY2w2eTY2cXkwMnk5ZTNjcnFnemh6Ym1lYiJ9.K6gDfWo-ngFCSsu2kr07vg`)
-      .then(response => response.json())
-      .then((data) => {
-        console.log("hola mapa");
-        paragraph.insertAdjacentHTML('beforeend', `<h2>${data.features[0].center}</h2>`);
-        console.log(data);
-        mapboxgl.accessToken = "pk.eyJ1IjoibWF0dHQyMDYiLCJhIjoiY2w2eTY2cXkwMnk5ZTNjcnFnemh6Ym1lYiJ9.K6gDfWo-ngFCSsu2kr07vg";
-        const map = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/dark-v10",
-          center: [data.features[0].center[0], data.features[0].center[1]],
-          zoom: 12
-        });
-        new mapboxgl.Marker()
-          .setLngLat([data.features[0].center[0], data.features[0].center[1]
-          ])
-          .addTo(map);
-      });
-    paragraph.innerHTML = "";
+  static values = {
+    apiKey: String,
+    markers: Array
   }
+
+  connect() {
+
+    console.log("hola 22");
+    mapboxgl.accessToken = this.apiKeyValue;
+    this.map = new mapboxgl.Map({
+      container: this.element, // container ID
+      style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    });
+
+    this.#addMarkersToMap();
+    this.#fitMapToMarkers();
+    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl }))
+
+
+  }
+
+  #addMarkersToMap(){
+    this.markersValue.forEach(marker => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      // Create a HTML element for your custom marker
+      const customMarker = document.createElement("div")
+      customMarker.className = "marker"
+      customMarker.style.backgroundImage = `url('${marker.image_url}')`
+      customMarker.style.backgroundSize = "contain"
+      customMarker.style.width = "25px"
+      customMarker.style.height = "25px"
+
+      new mapboxgl.Marker(customMarker)
+      .setLngLat([marker.lng, marker.lat])
+      .setPopup(popup)
+      .addTo(this.map);
+    });
+
+  };
+
+  #fitMapToMarkers(){
+    const bounds = new mapboxgl.LngLatBounds()
+    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 10, duration: 0 })
+  }
+
 }
