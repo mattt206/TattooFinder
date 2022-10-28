@@ -1,6 +1,6 @@
 class ProvidersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_providers, only: %i[show edit update destroy]
+  before_action :set_providers, only: %i[show edit update destroy map]
 
   def index
     @providers = Provider.all
@@ -21,7 +21,7 @@ class ProvidersController < ApplicationController
   end
 
   def map
-    @providers = Provider.all
+    @providers = Provider.where(id: @provider.id)
     @markers = @providers.geocoded.map do |provider|
       {
         lat: provider.latitude,
@@ -75,14 +75,11 @@ class ProvidersController < ApplicationController
     end
   end
 
-
-
   def set_providers
     @provider = Provider.find(params[:id])
   end
 
   def providers_params
-    params.require(:provider).permit(:name, :description, :address, :latitude, :longitude,
-      :start_time, :close_time, photos: [], category: [])
+    params.require(:provider).permit(:name, :description, :address, :latitude, :longitude, :start_time, :close_time, photos: [], category: [])
   end
 end
