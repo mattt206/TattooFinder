@@ -7,10 +7,11 @@ export default class extends Controller {
 
   connect() {
 
+
   }
 
   busqueda(){
-    console.log("ready");
+    console.log("ready for search");
     const input = document.getElementById("search-input");
     const searchBtn = document.getElementById("search-btn");
 

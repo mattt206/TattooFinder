@@ -1,6 +1,6 @@
 <div class="container">
   <div class = "row">
-    <div class = "col-12 d-flex flex-wrap">
+    <div class = "col-12 d-flex flex-wrap" >
         <!---service or portafolio divs--->
         <div class="card-services col-8">
 
@@ -16,6 +16,10 @@
               <div class="mb-3">
                 <%= link_to "Back", services_path, class: "btn btn-success"%>
                   <a class="btn btn-success" href="#coment"> Leave a comment </a>
+              </div>
+              <div class="like-container d-flex" data-action="click->likes#ranked" data-controller="likes">
+                <i class="fa-regular fa-thumbs-up" data-likes-target="likeicon" ></i>
+                <p data-likes-target="numlikes" >1</p>
               </div>
 
         </div>
@@ -71,7 +75,6 @@
     </div> <!---col-12-->
   </div> <!---row-->
 </div>  <!---container-->
-
 
 
 
