@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
          <div class="col-12">
-            <% if current_user && params[:id].to_i != current_user.id %>
+            <% if params[:id].to_i != current_user.id %>
               <%= render "artist_profile" %>
             <% elsif current_user && params[:id].to_i == current_user.id %>
               <%= render "current_profile" %>

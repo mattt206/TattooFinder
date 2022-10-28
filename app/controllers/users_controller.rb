@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def profile
     @booking = Booking.all
     @user = User.find(params[:id])
