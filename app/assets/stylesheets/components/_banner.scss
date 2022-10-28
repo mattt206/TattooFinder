@@ -50,7 +50,7 @@ p {
   font-family: "inter";
 }
 
-.btn-success {
+#botons {
   background-color: #292525;
   font-weight: 600;
   color: white;
@@ -64,26 +64,25 @@ p {
   }
 }
 
-
-.btn-register {
-  width: 550px;
-  border-radius: 8px;
-  background-color: whitesmoke;
-  color: #07080A;
-  padding: 6px;
-
-  &:hover{
-    background-color: #07080A;
-    color: white;
-  }
+.banner .form-control {
+  width: 500px;
+  border-radius: 8px 0px 0px 8px;
 }
 
-// .banner .form-control {
-//   width: 500px;
-//   border-radius: 8px 0px 0px 8px;
-// }
+.banner .input-group {
+  width: 700px;
+  height: 40px;
+}
 
-// .banner .input-group {
-//   width: 700px;
-//   height: 40px;
+// .btn-register {
+//   width: 550px;
+//   border-radius: 8px;
+//   background-color: whitesmoke;
+//   color: #07080A;
+//   padding: 6px;
+
+//   &:hover{
+//     background-color: #07080A;
+//     color: white;
+//   }
 // }
