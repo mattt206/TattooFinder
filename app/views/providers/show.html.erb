@@ -111,3 +111,26 @@
     </div><!--col-12-->
   </div> <!--row-->
 </div> <!--container-->
+
+
+
+<!--mapa con geocode prueba-->
+<%# <div class="container" data-controller='find-map'>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <form class="d-flex my-5" data-action="submit->find-map#find">
+            <input type="text" class="form-control flex-grow-1 me-2" placeholder="Type an address" data-find-map-target='inputfield'>
+            <input type="submit" value="Geocode!" class="btn btn-primary" >
+          </form>
+          <p class="font-monospace lead text-center fw-bold" data-find-map-target='paragraph'>
+            <!-- Display the coordinates here -->
+          </p>
+          <div  class="d-flex my-5" id="map" style="height: 100%; width: 100%" >
+            <!-- Display the map in this div -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+ %>

@@ -9,3 +9,12 @@ application.register("hello", HelloController)
 
 import HomeController from "./home_controller"
 application.register("home", HomeController)
+
+import LikesController from "./likes_controller"
+application.register("likes", LikesController)
+
+// import LikesServicesController from "./likes_services_controller"
+// application.register("likes-services", LikesServicesController)
+
+//import MapController from "./map_controller"
+// application.register("map", MapController)
