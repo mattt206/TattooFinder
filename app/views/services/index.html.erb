@@ -1,10 +1,5 @@
 <div class="container">
   <div class ="row">
-    <hr>
-      <div class="col-12 my-1">
-
-      </div>
-    <hr>
     <!--services-->
     <div class= "col-12 col-lg-8  none-margin">
       <% @services.each do |service|  %>
@@ -36,11 +31,11 @@
 
     </div>
 
-    <div class="col-12 col-lg-4" >
-             <div id='map' style='width: 350px; height: 500px;' data-controller="map"
-            data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
-            data-map-markers-value=" <%= @markers.to_json %> " >
-          </div>
+    <div class="col-12 col-lg-4 mt-4" >
+      <div id='map' style='width: 350px; height: 500px;' data-controller="map"
+        data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
+        data-map-markers-value=" <%= @markers.to_json %> " >
+      </div>
     </div>
   </div>
 

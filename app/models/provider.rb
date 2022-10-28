@@ -16,5 +16,5 @@ class Provider < ApplicationRecord
 
   validates :name, :address, uniqueness: true
   # validates :category, uniqueness: true
-
+  validates :description, presence: true, length: { minimum: 10, maximum: 120 }
 end

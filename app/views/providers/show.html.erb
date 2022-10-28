@@ -1,78 +1,138 @@
-<div class="container">
-  <div class="row my-3">
-
-    <!---studio profile---->
-
-      <div class="col-8 mb-2"> <!--columna de estudio-->
-        <div class="card" >
-            <% if @provider.photos.attached? %>
-              <div class="row">
-                <% @provider.photos.each do |photo|  %>
-                  <div class="col-md-6">
-                    <%= cl_image_tag photo.key, class: "card-img-top img-fluid" %>
-                  </div>
-                  <% end %>
-              </div>
-            <% else %>
-              <%= image_tag "unknow.png", class: "card-img-top img-fluid" %>
-            <% end %>
-            <div class="card-body" style="background-color:grey;">
+<div class="profile-container">
+  <div class="banner-profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card" style="border-radius: 15px; margin-top: 160px;">
+            <div class="card-body p-4 text-black">
               <div>
-                <h3 class="card-title" style="background-color:black;"><%= @provider.name %></h3>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <p class="small mb-0"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
+                  <h4 class="fw-bold mb-0">Studio  <i class="fas fa-certificate"></i></i></h4>
+                </div>
               </div>
-              <p> <%= @provider.description %>  </p>
-              <h4> Categories:  </h4>
-                <div class="m-2">
-                  <% @provider.category.each do |category| %>
-                    <span class="badge badge-pill badge-light"> <%= category %> </span>
+              <div class="d-flex align-items-center mb-4">
+                <div class="flex-shrink-0">
+                  <% if @provider.photos.attached? %>
+                    <%= cl_image_tag @provider.photos.first.key, class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                  <% else %>
+                    <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
                   <% end %>
                 </div>
-              <div class="m-2">
-                  <%= link_to "Back", providers_path, class: "btn btn-outline-dark"%>
-                  <%#= link_to "Edit", edit_provider_path(@provider), class: "btn btn-outline-dark" %>
-                  <%#= link_to "Delete", provider_path(@provider), class: "btn btn-warning mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <% if @provider.nil? %>
+                    <% else %>
+                      <h3 class="mb-0 me-2"><%= @provider.name %></h3>
+                    <% end %>
+                  </div>
+                  <div>
+                    <% @provider.category.each do |category| %>
+                      <p class="outline-styles"><%= category %></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;"><i
+                class="fas fa-comment me-2"></i>Message</button>
+                <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  <%= link_to "Edit User"%>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <!---- mapa  --->
-         <div class = "col-4 my-2" id='map' style='width: 350px; height: 500px;' data-controller="map"
-            data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
-            data-map-markers-value=" <%= @markers.to_json %> " >
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-8 ">
+          <div>
+            <h2>About the Studio</h2>
+            <h4 class="mb-5", style="font-weight: 300; height: 60px;"><%= @provider.description %></h4>
+            <div>
+              <span><i class="fa-solid fa-location-dot"></i> <%= @provider.address %></span>
+              <span class="ms-3"><i class="fa-solid fa-clock"></i> <%= @provider.start_time.hour%>pm - <%= @provider.    close_time.hour %> pm</span>
+            </div>
           </div>
-      </div><!--columna de estudio-->
+          <div>
+            <h2>Our Artists</h2>
+            <% @users.each do |user|   %>
+              <% if user.provider_id == @provider.id %>
+                <%= link_to profile_path(user.id), style: "text-decoration: none; padding: 0px;" do %>
+                  <div class="index-card my-2", style="height: 80px;">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <% if user.photo.attached? %>
+                          <%= cl_image_tag user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;     object-fit: cover;" %>
+                        <% else %>
+                          <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg",   class:       "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                        <% end %>
+                      </div>
+                      <div class="index-card-body", style= "margin-left: 25px;">
+                        <p class=""><strong><%= user.nickname %></strong></p>
+                        <% if user.services[0] != nil %>
+                          <p>Base price  $<%= user.services[0].price %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!---- mapa  --->
+        <div class="col-12 col-lg-4">
+          <div style= "margin-top: 50px;">
+            <div class = "col-4 my-2" id='map' style='width: 100%; height:400px;' data-controller="map"
+              data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
+              data-map-markers-value=" <%= @markers.to_json %> " >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <div class="row my-3">
+    <!---studio profile---->
 
 <!--2da fila artistas y agregar nuevso artistas-->
 
-  <!---- artistas del studio  --->
-      <div class="row">
-          <div class="col-8 mb-1">
-
-            <div class="card" >
-              <div class="card-body" style="background-color:grey;">
-                <div class="mx-auto">
-                <h2>our artists:</h2>
-                </div>
-                <% @users.each do |user|   %>
-                  <% if user.provider_id == @provider.id %>
-                    <div class = "card m-2" style="background-color:black;">
-                      <div>
-                        <p> nickname </p><%= user.nickname %>
-                          <% if user.photo.attached? %>
-                            <%= cl_image_tag user.photo.key, class: "avatar-index img-fluid" %>
-                          <% else %>
-                            <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
-                          <% end %>
-                      </div>
-                      <div>
-                         <%= link_to "Artist profile", profile_path(user.id), class: "btn btn-outline-light"%>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
 
            <!---- add new artist to your studio  --->
           <div class = "col-4 mb-1" style="background-color:grey;" >
@@ -105,18 +165,6 @@
     </div><!--col-12-->
   </div> <!--row-->
 </div> <!--container-->
-
-<div class="container">
-  <div class="row my-3">
-
-  <div class = "col-4 mb-2" id='map' style='width: 400px; height: 300px;' data-controller="map"
-      data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
-      data-map-markers-value=" <%= @markers.to_json %> " >   </div>
-
-
-  </div>
-</div>
-
 
 
 <!--mapa con geocode prueba-->

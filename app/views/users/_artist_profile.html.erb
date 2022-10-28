@@ -3,7 +3,9 @@
     <div>
       <div class="d-flex align-items-center justify-content-between mb-3">
         <p class="small mb-0"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
-        <h4 class="fw-bold mb-0">Base price $<%= @user.services[0].price %></h4>
+        <% if @user.services[0] != nil %>
+          <h4 class="fw-bold mb-0">Base price $<%= @user.services[0].price %></h4>
+        <% end %>
       </div>
     </div>
     <div class="d-flex align-items-center mb-4">

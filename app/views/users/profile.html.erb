@@ -3,45 +3,49 @@
     <div class="container">
       <div class="row">
          <div class="col-12">
-            <% if current_user && params[:id].to_i != current_user.id %>
+            <% if params[:id].to_i != current_user.id %>
               <%= render "artist_profile" %>
-            <% elsif current_user && params[:id].to_i == current_user.id %>
+            <% elsif params[:id].to_i == current_user.id %>
               <%= render "current_profile" %>
             <% end %>
 
                 <!--bookings info My appoitments:-->
-            <% if current_user &&  params[:id].to_i == current_user.id %>
+            <% if params[:id].to_i == current_user.id %>
               <h2>My appoitments</h2>
                 <% if !@booking.nil? %>
                   <% @booking.each do |booking| %>
                     <% if booking.artist_info.to_i == current_user.id  %>
-                      <%= link_to booking_path(booking.id), style: "text-decoration: none; padding: 0px;" do %>
+                      <% if booking.status == false %>
                         <div class="index-card my-2", style="height: 80px;">
                           <div class="d-flex align-items-center">
-                            <% if booking.status == false %>
-                              <div>
-                                <h5 class="", style="margin-left: 25px;"> Do you accept the appoitment # <%= booking.id  %>?   </h5>
-                              </div>
-                            <!--acepatar solicitud-->
-                              <%= form_tag(profile_path, method: "get") do %>
-                                <%= button_tag "confirm", value: booking.id, class: "btn btn-success mx-2" %>
-                              <% end %>
+                            <div>
+                              <h5 class="", style="margin-left: 25px;"> Do you accept the appoitment # <%= booking.id  %>?   </h5>
+                            </div>
+                                                  <!--acepatar solicitud-->
+                        <%= form_tag(profile_path, method: "get") do %>
+                          <%= button_tag "confirm", value: booking.id, class: "btn btn-success mx-2" %>
+                        <% end %>
+                          </div>
+                        </div>
 
-                            <!--acepatar solicitud-->
-                            <% else %>
+                      <!--acepatar solicitud-->
+                      <% else %>
+                        <%= link_to booking_path(booking.id), style: "text-decoration: none; padding: 0px;" do %>
+                          <div class="index-card my-2", style="height: 80px;">
+                            <div class="d-flex align-items-center">
                               <div>
                                 <% if @user.photo.attached? %>
-                                  <%= cl_image_tag @user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+                                  <%= cl_image_tag user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
                                 <% else %>
                                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:   "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
                                 <% end %>
                               </div>
                               <div class="index-card-body", style="margin-left: 25px;">
-                                <h5 class=""> Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
+                                <h5 class="">Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
                               </div>
-                          <% end %>
-                        </div>
-                      </div>
+                            </div>
+                          </div>
+                        <% end %>
                       <% end %>
                     <% end %>
                   <% end %>
