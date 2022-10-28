@@ -3,64 +3,68 @@
     <div class="container">
       <div class="row">
          <div class="col-12">
-         
             <% if params[:id].to_i != current_user.id %>
               <%= render "artist_profile" %>
             <% elsif params[:id].to_i == current_user.id %>
               <%= render "current_profile" %>
             <% end %>
-                <!--bookings info My appoitments:-->
-                <% if params[:id].to_i == current_user.id %>
-                      <div style="background-color:grey; m-2 p-2">
-                  <% if !@booking.nil? %>
-                    <h3>My appoitments:</h3>
-                      <% @booking.each do |booking| %>
-                        <% if booking.artist_info.to_i == current_user.id  %>
-                          <div style="background-color:grey;">
 
+                <!--bookings info My appoitments:-->
+            <% if params[:id].to_i == current_user.id %>
+              <h2>My appoitments</h2>
+                <% if !@booking.nil? %>
+                  <% @booking.each do |booking| %>
+                    <% if booking.artist_info.to_i == current_user.id  %>
+                      <div class="index-card my-2", style="height: 80px;">
+                        <div class="d-flex align-items-center">
                           <% if booking.status == false %>
                             <div>
-                              <h5 class="badge bg-danger mx-2 rounded-pill"> Do you accept the appoitment # <%= booking.id  %>? </h5>
+                              <h5 class="badge bg-danger mx-2 rounded-pill"> Do you accept the appoitment # <%= booking.id  %>?   </h5>
                             </div>
-                            <!--acepatar solicitud-->
+                          <!--acepatar solicitud-->
                             <%= form_tag(profile_path, method: "get") do %>
                               <%= button_tag "confirm", value: booking.id, class: "btn btn-success mx-2" %>
                             <% end %>
-                            <!--acepatar solicitud-->
+
+                          <!--acepatar solicitud-->
                           <% else %>
-                            <div>
-                              <h5 class="badge bg-success mx-2 rounded-pill"> Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour  %> pm </h5>
+                            <div class="">
+                              <% if @user.photo.attached? %>
+                                <%= cl_image_tag @user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+                              <% else %>
+                                <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:   "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                              <% end %>
+                            </div>
+                            <div class="index-card-body", style="margin-left: 25px;">
+                              <h5 class=""> Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
                               <%= link_to "details", booking_path(booking.id), class: "btn btn-success mx-2" %>
                             </div>
                           <% end %>
-                          </div>
-                        <% end %>
-                      <% end %>
+                        </div>
+                      </div>
+                    <% end %>
                   <% end %>
-                </div>
-                <!--bookings propios-->
-                <div style="background-color:grey; m-2 p-2">
-                  <% if !@booking.nil? %>
-                    <h3>My bookings:</h3>
-                      <% @booking.each do |booking| %>
-                        <% if booking.user_id == current_user.id %>
-                        <% current_artist = User.find(booking.artist_info.to_i) %>
-                          <div style="background-color:grey;">
-                          <% if booking.status == false %>
-                            <div>
-                              <h5 class="badge bg-danger mx-2 rounded-pill"> Pending booking with: <%= current_artist.nickname  %> </h5>
-                              <%= link_to "details", booking_path(booking.id), class: "btn btn-success mx-2" %>
-                            </div>
-                          <% end %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                  <% end %>
-                </div>
-
-
-
                 <% end %>
+                <!--bookings propios-->
+              <div style="background-color:grey; m-2 p-2">
+                <% if !@booking.nil? %>
+                  <h3>My bookings:</h3>
+                  <% @booking.each do |booking| %>
+                    <% if booking.user_id == current_user.id %>
+                      <% current_artist = User.find(booking.artist_info.to_i) %>
+                      <div style="background-color:grey;">
+                        <% if booking.status == false %>
+                          <div>
+                            <h5 class="badge bg-danger mx-2 rounded-pill"> Pending booking with: <%= current_artist.nickname  %> </h5>
+                            <%= link_to "details", booking_path(booking.id), class: "btn btn-success mx-2" %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
 
 
 
