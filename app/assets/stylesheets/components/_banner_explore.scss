@@ -1,0 +1,47 @@
+.banner-explore {
+  background-image: url("/assets/fondoexploretattoo.png");
+  background-repeat: no-repeat;
+  height: 600px;
+  background-size: cover;
+  background-position: 0px -60px;
+  display: flex;
+  align-items: center;
+}
+
+.banner-explore h2 {
+  background-color: #292525;
+  color: whitesmoke;
+  font-size: 28px;
+  font-weight: bolder;
+  padding: 5px 10px;
+  width: 400px;
+  border-radius: 5px;
+}
+
+.banner-explore p {
+  color: #292525;
+  font-size: 17px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.find-link {
+  background-color: #3d3838;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0px 3px;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: bolder;
+  width: 25%;
+
+  &:hover{
+    background-color: #07080A;
+    color: white;
+  }
+}
+
+#flexbox {
+  margin: 150px;
+}
