@@ -6,7 +6,10 @@
         <%= simple_form_for [@provider]  do |f| %>
         <p><%= f.input :name %></p>
         <p><%= f.input :description %></p>
-        <p><%= f.input :address, placeholder: 'Ex: Calle 10 # 35-20, Medellin, Antioquia' %></p>
+        <p><%#= f.input :address, placeholder: 'Ex: Calle 10 # 35-20, Medellin, Antioquia' %></p>
+        <p><%= f.input :address,
+        input_html: {data: {address_autocomplete_target: "address"}},
+        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}, class: "d-none" %></p>
         <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
         <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>

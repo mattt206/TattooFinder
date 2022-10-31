@@ -30,9 +30,9 @@
       <% end %>
 
     </div>
-
+    <!--mapa-->
     <div class="col-12 col-lg-4 mt-4" >
-      <div id='map' style='width: 350px; height: 500px;' data-controller="map"
+      <div class="sticky" id='map' style='width: 350px; height: 600px;' data-controller="map"
         data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>"
         data-map-markers-value=" <%= @markers.to_json %> " >
       </div>
