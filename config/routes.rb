@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  get 'chatrooms/show'
   devise_for :users do
     resources :providers, only: %i[new create edit update destroy]
+  end
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
   end
 
   get '/users/:id', to: 'users#profile', as: 'profile'
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :bookings, only: %i[new create]
+    # resources :chatrooms, only: :show
   end
   resources :providers
   resources :bookings, except: %i[new create]
