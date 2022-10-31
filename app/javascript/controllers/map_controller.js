@@ -9,8 +9,11 @@ export default class extends Controller {
     apiKey: String,
     markers: Array
   }
+  static targets = ["address"]
+
 
   connect() {
+
 
     console.log("hola 22");
     mapboxgl.accessToken = this.apiKeyValue;
@@ -24,7 +27,19 @@ export default class extends Controller {
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }))
 
+      this.geocoder = new MapboxGeocoder({
+        accessToken: this.apiKeyValue,
+        types: "country,region,place,postcode,locality,neighborhood,address"
+      })
+      this.geocoder.addTo(this.element)
 
+      this.geocoder.on("result", event => this.#setInputValue(event))
+      this.geocoder.on("clear", () => this.#clearInputValue())
+
+  }
+
+  disconnect() {
+    this.geocoder.onRemove()
   }
 
   #addMarkersToMap(){
@@ -52,5 +67,14 @@ export default class extends Controller {
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 10, duration: 0 })
   }
+
+  #setInputValue(event) {
+    this.addressTarget.value = event.result["place_name"]
+  }
+
+  #clearInputValue() {
+    this.addressTarget.value = ""
+  }
+
 
 }
