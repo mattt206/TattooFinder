@@ -75,9 +75,9 @@
             <div id="p-gray">
             <!---reviews divs-->
             <h3 class="my-3">Comments</h3>
-            <div class="overflow-auto">
+            <div class="overflow-auto" style="height: 185px;">
               <% @service.reviews.each do |review| %>
-                <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
+                <% review.rating.times do%><i class="fa-solid fa-skull" style="margin-right:3px;"></i><% end %>
                 <br>
                 <p> <%= review.content %> </p>
                 <br>
