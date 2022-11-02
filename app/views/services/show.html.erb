@@ -35,36 +35,36 @@
           </div>
         </div>
         <!--end artist info--->
-        <!---reviews divs-->
-        <div class="col-8" style="background-color:grey;">
-          <h3 class="my-3" style="text-align:center;" >Comments</h3>
-            <% @service.reviews.each do |review| %>
-              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
-              <br>
-              <p> <%= review.content %> </p>
-              <br>
-            <% end %>
-        </div>
-        <!---reviews divs-->
 
         <!---reviews divs prubas-->
-        <div class="col-8" style="background-color:grey;">
-          <h3 class="my-3" style="text-align:center;" >Comments</h3>
+        <div class="col-8 my-2 comments-style" data-controller="visibility" id="options">
+          <h3 class="my-3" style="text-align:center;" data-action="visibility#showTargets">Comments
+          <button data-action="visibility#showTargets" class="btn btn-success btn-sm" id="btn-show" ><i class="fa-solid fa-square-caret-down"></i></button></h3>
             <% @service.reviews.each do |review| %>
-              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
-              <br>
-              <p> <%= review.content %> </p>
-              <br>
+                    <div class="card-comments p-3 m-1" data-visibility-target="hideable" hidden>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center">
+                          <img src="https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg" width="50" class="user-img rounded-circle mr-2">
+                          <span class="user-data"><small class="font-weight-bold text-primary "><strong>  <%= User.all.sample.nickname %></strong></small> <small class="font-weight-bold"><%= review.content %></small></span>
+                        </div>
+                        <small><%= review.created_at.time.to_formatted_s(:short) %></small>
+                      </div>
+                      <div class="action d-flex justify-content-between mt-2 align-items-center">
+                        <div class="reply px-4">
+                        </div>
+                        <div class="icons align-items-center">
+                            <% review.rating.times do%><i class="fa-solid fa-skull text-warning"></i><% end %>
+                        </div>
+                      </div>
+                    </div>
             <% end %>
         </div>
         <!---reviews divs prubas-->
-
-
 
     <!--leave coments-->
-      <div class = "col-8" style="background-color:#197296;">
-        <div class="col-6 mx-auto" id="coment">
-          <h3 style="text-align:center;">Leave a comment:</h3>
+      <div class = "col-8 comments-style my-2" data-controller="visibility" id="options">
+          <h3 style="text-align:center;">Leave a comment <button data-action="visibility#showTargets" class="btn btn-success    btn-sm"  id="btn-show" onclick="scrollWin()"><i class="fa-solid fa-square-caret-down"></i></button></h3>
+        <div class="col-6 mx-auto" id="coment" data-visibility-target="hideable" hidden >
           <%= simple_form_for [@service, @service.reviews.build] do |f|%>
             <%= f.input :rating, as: :select, collection: ['1','2','3','4','5'], label: "Give it a rank!" %>
             <%= f.text_area :content, class: "form-control my-2" %>
@@ -72,6 +72,7 @@
               <%= f.submit "Send comment", class: "btn btn-success mx-auto"  %>
             </div>
           <% end %>
+        </div>
       </div>
    <!--leave coments-->
 
@@ -79,4 +80,3 @@
     </div> <!---col-12-->
   </div> <!---row-->
 </div>  <!---container-->
-

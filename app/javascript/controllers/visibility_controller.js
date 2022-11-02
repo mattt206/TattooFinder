@@ -14,8 +14,9 @@ export default class extends Controller {
         el.hidden = false
       }
     });
-    
+
   }
+
 
   // hideTargets() {
   //   this.hideableTargets.forEach(el => {
@@ -28,4 +29,11 @@ export default class extends Controller {
       el.hidden = !el.hidden
     });
   }
+
+  scrollWin() {
+    window.scrollBy(0, 200);
+  }
+
+
+
 }
