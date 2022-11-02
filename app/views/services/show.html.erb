@@ -9,11 +9,11 @@
             <% else %>
               <%= image_tag "unknow.png", class: "img-ser" %>
             <% end %>
-            <div class="my-2">
-             <h5><%= @service.style %></h5>
+            <div class="m-2">
+             <h5> Style: <%= @service.style %></h5>
               <p> Descripción: <%= @service.description %> <p>
             </div>
-              <div class="mb-3">
+              <div class="m-2">
                 <%= link_to "Back", services_path, class: "btn btn-success"%>
                   <a class="btn btn-success" href="#coment"> Leave a comment </a>
               </div>
@@ -25,25 +25,17 @@
         </div>
         <!--start artist info-->
         <div class="col-4">
-          <div class="card-body-artist py-3" >
-            <div class="d-flex justify-content-center avatar-profile p-4">
-              <% if @service.user.photo.attached? %>
-                <%= cl_image_tag @service.user.photo.key %>
-              <% else %>
-                <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg" %>
-              <% end %>
-            </div>
-            <div class="d-flex justify-content-center m-2">
-              <h4> <%= @service.user.nickname %></h4>
-            </div>
-            <div class="d-flex justify-content-center my-2" >
-              <%= link_to "Artist Profile", profile_path(@service.user_id), class: "btn btn-success mx-auto" %>
-            </div>
-
+           <div class="profile-card-2">
+            <% if @service.user.photo.attached? %>
+              <%= cl_image_tag @service.user.photo.key, class: "img img-responsive", height: "100%", width: "100%" %>
+            <% else %>
+              <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img img-responsive" %>
+            <% end %>
+            <div class="profile-name"><%= @service.user.nickname  %></div>
           </div>
         </div>
         <!--end artist info--->
-                <!---reviews divs-->
+        <!---reviews divs-->
         <div class="col-8" style="background-color:grey;">
           <h3 class="my-3" style="text-align:center;" >Comments</h3>
             <% @service.reviews.each do |review| %>
@@ -53,22 +45,34 @@
               <br>
             <% end %>
         </div>
-
         <!---reviews divs-->
-          <!--leave coments-->
-    <div class = "col-8" style="background-color:#197296;">
 
+        <!---reviews divs prubas-->
+        <div class="col-8" style="background-color:grey;">
+          <h3 class="my-3" style="text-align:center;" >Comments</h3>
+            <% @service.reviews.each do |review| %>
+              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
+              <br>
+              <p> <%= review.content %> </p>
+              <br>
+            <% end %>
+        </div>
+        <!---reviews divs prubas-->
+
+
+
+    <!--leave coments-->
+      <div class = "col-8" style="background-color:#197296;">
         <div class="col-6 mx-auto" id="coment">
           <h3 style="text-align:center;">Leave a comment:</h3>
           <%= simple_form_for [@service, @service.reviews.build] do |f|%>
-
-          <%= f.input :rating, as: :select, collection: ['1','2','3','4','5'], label: "Give it a rank!" %>
-          <%= f.text_area :content, class: "form-control my-2" %>
-          <div class="d-flex mx-auto m-2" >
-            <%= f.submit "Send comment", class: "btn btn-success mx-auto"  %>
-          </div>
+            <%= f.input :rating, as: :select, collection: ['1','2','3','4','5'], label: "Give it a rank!" %>
+            <%= f.text_area :content, class: "form-control my-2" %>
+            <div class="d-flex mx-auto m-2" >
+              <%= f.submit "Send comment", class: "btn btn-success mx-auto"  %>
+            </div>
           <% end %>
-        </div>
+      </div>
    <!--leave coments-->
 
 
@@ -76,34 +80,3 @@
   </div> <!---row-->
 </div>  <!---container-->
 
-
-
-
-                <!--start artist info>
-                          <div class="card-services col-4">
-                            <div class="card-body-services">
-                                <div class="myback-img img-fluid">
-                                    <% if @service.user.photo.attached? %>
-                                      <%= cl_image_tag @service.user.photo.key %>
-                                    <% else %>
-                                      <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid" %>
-                                    <% end %>
-                                </div>
-                                <div class="myoverlay"></div>
-                                <div class="profile-img">
-                                    <div class="borders avatar-profile">
-                                        <% if @service.user.photo.attached? %>
-                                          <%= cl_image_tag @service.user.photo.key, class: "img-fluid" %>
-                                        <% else %>
-                                          <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid" %>
-                                        <% end %>
-                                    </div>
-                                </div>
-                                <div class="profile-title">
-                                    <a href="/users/<%=@service.user_id %>">
-                                        <h3><%= @service.user.nickname %></h3>
-                                    </a>
-                                </div>
-                            </div>
-                          </div>
-        <end artist info--->
