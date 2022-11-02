@@ -30,7 +30,7 @@
                 <% else %>
                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
                 <% end %>
-                
+
               </div>
               <div class="flex-grow-1 ms-3">
                 <div class="d-flex flex-row align-items-center mb-2">
@@ -47,22 +47,24 @@
               </div>
 
             </div>
-            <hr>
-            <h4>location</h4>
-            <%= link_to provider_path(@user.provider), type: "button", style: "text-decoration: none; padding: 0px;" do %>
-              <div class="d-flex align-items-center">
-                <div>
-                 <% if @user.provider.photos.attached? %>
-                    <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
-                  <% else %>
-                    <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
-                  <% end %>
+            <% if !@user.provider_id.nil?  %>
+              <hr>
+              <h4>location</h4>
+              <%= link_to provider_path(@user.provider), type: "button", style: "text-decoration: none; padding: 0px;" do %>
+                <div class="d-flex align-items-center">
+                  <div>
+                   <% if @user.provider.photos.attached? %>
+                      <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                    <% else %>
+                      <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                    <% end %>
+                  </div>
+                  <div class="ms-3" id="p-gray">
+                    <p ><strong><%= @user.provider.name %></strong></p>
+                    <p ><%= @user.provider.address %></p>
+                  </div>
                 </div>
-                <div class="ms-3" id="p-gray">
-                  <p ><strong><%= @user.provider.name %></strong></p>
-                  <p ><%= @user.provider.address %></p>
-                </div>
-              </div>
+              <% end %>
             <% end %>
             <hr>
             <div class="d-flex align-items-center" id="p-gray" data-action="click->likes#ranked" data-controller="likes">
@@ -73,13 +75,14 @@
             <div id="p-gray">
             <!---reviews divs-->
             <h3 class="my-3">Comments</h3>
-
-            <% @service.reviews.each do |review| %>
-              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
-              <br>
-              <p> <%= review.content %> </p>
-              <br>
+            <div class="overflow-auto">
+              <% @service.reviews.each do |review| %>
+                <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
+                <br>
+                <p> <%= review.content %> </p>
+                <br>
             <% end %>
+            </div>
             <!---reviews divs-->
             </div>
           </div>
@@ -108,4 +111,3 @@
 
   </div> <!---row-->
 </div>  <!---container-->
-
