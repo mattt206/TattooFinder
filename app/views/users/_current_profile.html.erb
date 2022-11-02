@@ -24,8 +24,12 @@
                   <% end %>
                 </div>
                 <div>
-                  <% @user.services.each do |service| %>
-                    <p class="outline-styles" ><%= service.style %></p>
+                  <% @styles = [] %>
+                  <%  @user.services.each do |service| %>
+                    <% @styles.push(service.style) %>
+                  <% end %>
+                  <% @styles.uniq.each do |style| %>
+                    <p class="outline-styles" ><%= style %></p>
                   <% end %>
                 </div>
               </div>
@@ -60,8 +64,8 @@
 <h2>Portfolio</h2>
     <div class="card-group">
       <% @user.services.each do |service|  %>
-        <%= link_to service_path(service), style: "text-decoration: none;" do %>
-          <div class="profile-card-2 mx-2">
+
+          <div class="profile-card-2 mx-2 h-100 ">
             <div>
               <% if service.photo.attached? %>
                 <%= cl_image_tag service.photo.key, class: "img img-responsive img-fluid", style: "object-fit: cover;"%>
@@ -71,6 +75,6 @@
             </div>
             <h3 class="profile-name"><%= service.style %></h3>
           </div>
-        <% end %>
+
       <% end %>
     </div>
