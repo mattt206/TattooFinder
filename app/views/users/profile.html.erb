@@ -35,7 +35,7 @@
                             <div class="d-flex align-items-center">
                               <div>
                                 <% if @user.photo.attached? %>
-                                  <%= cl_image_tag user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+                                  <%= cl_image_tag @user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
                                 <% else %>
                                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:   "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
                                 <% end %>

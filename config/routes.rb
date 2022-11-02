@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     resources :providers, only: %i[new create edit update destroy]
   end
 
-  resources :chatrooms, only: :show do
-    resources :messages, only: :create
+  resources :chatrooms, only: %i[new show] do
+    # resources :messages, only: :create
   end
 
   get '/users/:id', to: 'users#profile', as: 'profile'
@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :bookings, only: %i[new create]
-    # resources :chatrooms, only: :show
+    resources :chatrooms, only: %i[create new] do
+      resources :messages, only: :create
+    end
   end
   resources :providers
   resources :bookings, except: %i[new create]

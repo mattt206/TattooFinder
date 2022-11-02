@@ -4,7 +4,11 @@
       <h2>New Style</h2>
       <%= simple_form_for [@service]  do |f| %>
         <div class="form-inputs">
-          <p><%= f.input :style, collection: ['Old school','New school', 'blackwork', 'minimalist', 'Neo traditional', 'traditional', 'tribal', 'trash polka', 'other'] %></p>
+          <p><%= f.input :style,
+          collection: ["Blackwork", "Tradicional", "Neotradicional", "New school",
+          "Acuarela", "Japonés Tradicional", "Realista", "Retrato",
+          "Tribal", "Minimalista", "Lettering ", "Trash polka ",
+          "Geométrico ", "Dotwork", "Black & Grey ", "Ignorant", "Other"] %></p>
           <p><%= f.input :price %></p>
           <p><%= f.input :description %></p>
           <p><%= f.input :photo, as: :file %>

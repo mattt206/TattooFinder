@@ -4,8 +4,18 @@ class ServicesController < ApplicationController
   before_action :set_services, only: %i[show edit update destroy]
 
   def index
-    @services = Service.all
-    map
+    @filtro = params[:filtrop]
+    if params[:query].present?
+      @query = params[:query].downcase
+      @services = Service.where("style LIKE '%#{@query}%'")
+      map
+      if @services.size.zero?
+        @services = Service.all
+      end
+    else
+      @services = Service.all
+      map
+    end
   end
 
   def show
