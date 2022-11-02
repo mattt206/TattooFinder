@@ -1,69 +1,95 @@
 <div class="container">
   <div class = "row">
-    <div class = "col-12 d-flex flex-wrap" >
-        <!---service or portafolio divs--->
-        <div class="card-services col-8">
 
-            <% if @service.photo.attached? %>
-              <%= cl_image_tag @service.photo.key, class: "img-ser" %>
-            <% else %>
-              <%= image_tag "unknow.png", class: "img-ser" %>
-            <% end %>
-            <div class="m-2">
-             <h5> Style: <%= @service.style %></h5>
-              <p> Descripción: <%= @service.description %> <p>
-            </div>
-              <div class="m-2">
-                <%= link_to "Back", services_path, class: "btn btn-success"%>
-                  <a class="btn btn-success" href="#coment"> Leave a comment </a>
-              </div>
-              <div class="like-container d-flex" data-action="click->likes#ranked" data-controller="likes">
-                <i class="fa-regular fa-thumbs-up" data-likes-target="likeicon" ></i>
-                <p data-likes-target="numlikes" >1</p>
-              </div>
-
-        </div>
+    <div class = "col-12 col-lg-8 mt-4" >
+      <!---service or portafolio divs--->
+      <div class="">
+        <% if @service.photo.attached? %>
+          <%= cl_image_tag @service.photo.key, class: "img-ser", style:"width: 100%; border-radius:15px; max-height: 856px; object-fit: cover;" %>
+        <% else %>
+          <%= image_tag "unknow.png", class: "img-ser", style:"width: 100%; border-radius:15px; max-height: 856px; object-fit: cover;" %>
+        <% end %>
+      </div>
+    </div>
         <!--start artist info-->
-        <div class="col-4">
-           <div class="profile-card-2">
-            <% if @service.user.photo.attached? %>
-              <%= cl_image_tag @service.user.photo.key, class: "img img-responsive", height: "100%", width: "100%" %>
-            <% else %>
-              <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img img-responsive" %>
+      <div class="col-12 col-lg-4 mt-4">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-4 text-black">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <p class="small mb-0" style="color: rgba(32, 33, 37, 0.8) !important;"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
+                <% if @user.services[0] != nil %>
+                  <h4 class="fw-bold mb-0">Base price $<%= @user.services[0].price %></h4>
+                <% end %>
+              </div>
+            </div>
+            <div class="d-flex align-items-center mb-4">
+              <div class="flex-shrink-0">
+                <% if @user.photo.attached? %>
+                  <%= cl_image_tag @user.photo.key, class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                <% else %>
+                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                <% end %>
+                
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <div class="d-flex flex-row align-items-center mb-2">
+                  <% if @user.nil? %>
+                  <% else %>
+                    <h3 class="mb-0 me-2"><%= @user.nickname %></h3>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to profile_path(@service.user_id), style: "text-decoration: none; padding: 0px;" do %>
+                    <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">See Profile</p>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+            <hr>
+            <h4>location</h4>
+            <%= link_to provider_path(@user.provider), type: "button", style: "text-decoration: none; padding: 0px;" do %>
+              <div class="d-flex align-items-center">
+                <div>
+                 <% if @user.provider.photos.attached? %>
+                    <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                  <% else %>
+                    <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
+                  <% end %>
+                </div>
+                <div class="ms-3" id="p-gray">
+                  <p ><strong><%= @user.provider.name %></strong></p>
+                  <p ><%= @user.provider.address %></p>
+                </div>
+              </div>
             <% end %>
-            <div class="profile-name"><%= @service.user.nickname  %></div>
+            <hr>
+            <div class="d-flex align-items-center" id="p-gray" data-action="click->likes#ranked" data-controller="likes">
+              <i class="fa-regular fa-heart" data-likes-target="likeicon"></i>
+              <p data-likes-target="numlikes" class="ms-2">1</p>
+              <p class="outline-styles ms-auto"> <%= @service.style %></p>
+            </div>
+            <div id="p-gray">
+            <!---reviews divs-->
+            <h3 class="my-3">Comments</h3>
+
+            <% @service.reviews.each do |review| %>
+              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
+              <br>
+              <p> <%= review.content %> </p>
+              <br>
+            <% end %>
+            <!---reviews divs-->
+            </div>
           </div>
         </div>
-        <!--end artist info--->
-        <!---reviews divs-->
-        <div class="col-8" style="background-color:grey;">
-          <h3 class="my-3" style="text-align:center;" >Comments</h3>
-            <% @service.reviews.each do |review| %>
-              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
-              <br>
-              <p> <%= review.content %> </p>
-              <br>
-            <% end %>
-        </div>
-        <!---reviews divs-->
 
-        <!---reviews divs prubas-->
-        <div class="col-8" style="background-color:grey;">
-          <h3 class="my-3" style="text-align:center;" >Comments</h3>
-            <% @service.reviews.each do |review| %>
-              <% review.rating.times do%><i class="fa-solid fa-skull"></i><% end %>
-              <br>
-              <p> <%= review.content %> </p>
-              <br>
-            <% end %>
-        </div>
-        <!---reviews divs prubas-->
+        <div class="card mt-4" style="border-radius: 15px;">
+          <div class="card-body">
+        <!--leave coments-->
+        <div class="" id="coment">
 
-
-
-    <!--leave coments-->
-      <div class = "col-8" style="background-color:#197296;">
-        <div class="col-6 mx-auto" id="coment">
           <h3 style="text-align:center;">Leave a comment:</h3>
           <%= simple_form_for [@service, @service.reviews.build] do |f|%>
             <%= f.input :rating, as: :select, collection: ['1','2','3','4','5'], label: "Give it a rank!" %>
@@ -72,11 +98,14 @@
               <%= f.submit "Send comment", class: "btn btn-success mx-auto"  %>
             </div>
           <% end %>
+
+        </div>
+        <!--leave coments-->
+          </div>
+        </div>
       </div>
-   <!--leave coments-->
+    </div>
 
-
-    </div> <!---col-12-->
   </div> <!---row-->
 </div>  <!---container-->
 

@@ -26,8 +26,12 @@
           <%#= raise %>
         </div>
         <div>
-          <% @user.services.each do |service| %>
-            <p class="outline-styles" ><%= service.style %></p>
+          <% @styles = [] %>
+          <%  @user.services.each do |service| %>
+            <% @styles.push(service.style) %>
+          <% end %>
+          <% @styles.uniq.each do |style| %>
+            <p class="outline-styles" ><%= style %></p>
           <% end %>
         </div>
       </div>

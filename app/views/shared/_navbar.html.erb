@@ -5,8 +5,10 @@
         <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag ("/assets/logosencilloazul.png") %>
         <% end %>
-        <%# <li class="index-nav nav-item d-flex items-center">
-        </li> %>
+        <li class="index-nav nav-item d-flex items-center">
+          <%= link_to "Explore", services_path, class: "nav-link " %>
+          <%= link_to 'Studios',  providers_path, class: "nav-link" %>
+        </li>
       </ul>
 
 
@@ -19,18 +21,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="m-nav-item">
-            <%= link_to "Profile",  profile_path(current_user.id), class: "nav-link" %>
-          </li>
           <!--tatuadores y estudios-->
-          <% if current_user.user_type == "yes" %>
+          <%# <% if current_user.user_type == "yes" %>
             <li class="n-nav-item">
               <%= link_to 'New Studio',  new_provider_path, class: "nav-link" %>
             </li>
             <li class="n-nav-item">
               <%= link_to 'New Style',  new_service_path, class: "nav-link" %>
             </li>
-          <% end %>
+          <%# <% end %>
+          <li class="m-nav-item">
+            <%= link_to "Profile",  profile_path(current_user.id), class: "nav-link" %>
+          </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -43,11 +45,8 @@
           </li>
         <% else %>
           <li class="index-nav nav-item d-flex items-center">
-            <%= link_to "Explore", services_path, class: "nav-link " %>
-            <%= link_to 'Studios',  providers_path, class: "nav-link" %>
             <%= link_to "Login", new_user_session_path, class: "nav-link-login" %>
           </li>
-
         <% end %>
       </ul>
     </div>
