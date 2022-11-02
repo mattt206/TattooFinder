@@ -1,0 +1,12 @@
+ <div class = "col-12 col-lg-4 mx-auto">
+      <h2>New chat</h2>
+      <%= simple_form_for [@user, @chatroom] do |f| %>
+        <div class="form-inputs">
+          <p><%= f.input :name, collection: ['asesory','booking', 'other'], label: "What are you looking for?" %></p>
+          <p><% f.hidden_field :user_id, value: @user.id %></p>
+          <div class="form-actions d-flex justify-content-center">
+            <%= f.button :submit, "Start Chat!", class: "btn btn-success mx-2 my-3"%>
+          </div>
+        </div>
+      <% end %>
+    </div>

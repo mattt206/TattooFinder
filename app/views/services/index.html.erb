@@ -1,35 +1,84 @@
 <div class="container">
   <div class ="row">
     <!--services-->
-    <div class= "col-12 col-lg-8  none-margin">
-      <% @services.each do |service|  %>
-        <%= link_to service_path(service), style: "text-decoration: none;" do %>
-          <div class="index-card mt-4">
-            <div class="d-flex align-items-center">
-              <div>
-                <% if service.photo.attached? %>
-                  <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid"%>
-                <% else %>
-                  <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
+    <div class= "col-12 col-lg-8  none-margin"> <!--col-12-->
+      <!--filters-->
+      <hr>
+        <div id="options" data-controller="visibility">
+          <button data-action="visibility#showTargets" class="btn btn-success btn-sm">Filters</button>
+            <div data-visibility-target="hideable" hidden>
+                <form action="services" data-visibility-target="hideable" hidden>
+                <button class="btn btn-primary mt-3 btn-sm" type="submit" class="form-control" name="filtrop" value="New">new</button>
+                <button class="btn btn-primary mt-3 btn-sm" type="submit" class="form-control" name="filtrop" value="Old">old</button>
+                <button class="btn btn-primary mt-3 btn-sm" type="submit" class="form-control" name="filtrop" value="Colors">colors</button>
+                <button class="btn btn-primary mt-3 btn-sm" type="submit" class="form-control" name="filtrop" value ="Black">black-white</button>
+                <button class="btn btn-primary mt-3 btn-sm" type="submit" class="form-control" name="filtrop" value ="" >none</button>
+              </form>
+            </div>
+        </div>
+      <hr>
+      <!--filters-->
+      <!--cards---->
+          <% if @filtro != nil %>
+            <% @services_filter = @services.select { |service| service.style.include?("#{@filtro}") }%>
+              <% @services_filter.each do |service| %>
+                <%= link_to service_path(service), style: "text-decoration: none;" do %>
+                  <div class="index-card mt-4">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <% if service.photo.attached? %>
+                          <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid"%>
+                        <% else %>
+                          <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
+                        <% end %>
+                      </div>
+                      <div class="index-card-body">
+                        <h3><%= service.user.nickname %></strong>
+                        <h4><%= service.style %></h4>
+                      </div>
+                    </div>
+                    <div>
+                      <% if service.user.photo.attached? %>
+                        <%= cl_image_tag service.user.photo.key, class: "avatar-index img-fluid" %>
+                      <% else %>
+                        <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
+                      <% end %>
+                    </div>
+                  </div>
                 <% end %>
-              </div>
-              <div class="index-card-body">
-                <h3><%= service.user.nickname %></strong>
-                <h4><%= service.style %></h4>
-              </div>
-            </div>
-            <div>
-              <% if service.user.photo.attached? %>
-                <%= cl_image_tag service.user.photo.key, class: "avatar-index img-fluid" %>
-              <% else %>
-                <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
               <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+          <% else %>
+            <% @services.each do |service|  %>
+              <%= link_to service_path(service), style: "text-decoration: none;" do %>
+                <div class="index-card mt-4">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <% if service.photo.attached? %>
+                        <%= cl_image_tag service.photo.key, class: "card-img-top img-fluid"%>
+                      <% else %>
+                        <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "card-img-top img-fluid" %>
+                      <% end %>
+                    </div>
+                    <div class="index-card-body">
+                      <h3><%= service.user.nickname %></strong>
+                      <h4><%= service.style %></h4>
+                    </div>
+                  </div>
+                  <div>
+                    <% if service.user.photo.attached? %>
+                      <%= cl_image_tag service.user.photo.key, class: "avatar-index img-fluid" %>
+                    <% else %>
+                      <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar-index   img-fluid"%>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+      <!--cards---->
 
-    </div>
+    </div> <!--col-12-->
+
     <!--mapa-->
     <div class="col-12 col-lg-4 mt-4" >
       <div class="sticky" id='map' style='width: 350px; height: 600px;' data-controller="map"
@@ -37,6 +86,6 @@
         data-map-markers-value=" <%= @markers.to_json %> " >
       </div>
     </div>
+    <!--mapa-->
   </div>
-
 </div>

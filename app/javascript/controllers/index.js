@@ -21,3 +21,6 @@ application.register("likes", LikesController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import VisibilityController from "./visibility_controller"
+application.register("visibility", VisibilityController)
