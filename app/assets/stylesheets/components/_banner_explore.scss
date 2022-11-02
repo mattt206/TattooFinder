@@ -1,10 +1,7 @@
 .banner-explore {
-  background-image: url("/assets/fondoexploretattoo.png");
   background-repeat: no-repeat;
   height: 600px;
-  background-size: cover;
   background-position: 0px -60px;
-  display: flex;
   align-items: center;
 }
 
@@ -40,8 +37,4 @@
     background-color: #07080A;
     color: white;
   }
-}
-
-#flexbox {
-  margin: 150px;
 }
