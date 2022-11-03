@@ -1,7 +1,10 @@
-<div id="message-<%= message.id %>">
+<div id="message-<%= message.id %>" class="color-msn">
   <small>
     <strong><%= message.user.nickname %></strong>
+    <strong><%= message.user.id %></strong>
+
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    <p><%# message.hidden_field :artist_info, value: message.user.id %></p>
   </small>
   <p><%= message.content %></p>
 </div>

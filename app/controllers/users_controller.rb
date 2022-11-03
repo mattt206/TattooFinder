@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def profile
+    chat
     @booking = Booking.all
     @user = User.find(params[:id])
     if @user.nil?
@@ -14,6 +15,9 @@ class UsersController < ApplicationController
     if !params[:button].nil?
       pending
     end
+  end
+
+  def chat
   end
 
   private

@@ -4,21 +4,29 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
     @message.user = current_user
-    #! trying to capture a value for params
+    artist
     if @message.save
-      # raise
       ChatroomChannel.broadcast_to(
-        @chatroom,
-        render_to_string(partial: "message", locals: { message: @message })
+        @chatroom, render_to_string(partial: "message", locals: { message: @message })
       )
       head :ok
-      # raise
     else
       render "chatrooms/show", status: :unprocessable_entity
     end
   end
 
   private
+
+  def artist
+    @message.artist_info = params[:message][:artist_info].to_i
+    @artist = User.find(@message.artist_info)
+    if @artist.chats.empty?
+      @artist.chats << @chatroom.id
+    else
+      @artist.chats << @chatroom.id if !@artist.chats.include?(@chatroom.id.to_s)
+    end
+    @artist.save
+  end
 
   def message_params
     params.require(:message).permit(:content, :artist_info)
