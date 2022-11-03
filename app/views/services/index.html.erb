@@ -1,9 +1,8 @@
 <div class="container">
   <div class ="row">
     <!--services-->
-    <div class= "col-12 col-lg-8  none-margin"> <!--col-12-->
+    <div class= "col-12 col-lg-8 mt-4"> <!--col-12-->
       <!--filters-->
-      <hr>
         <div id="options" data-controller="visibility">
           <button data-action="visibility#showTargets" class="btn btn-success btn-sm">Filters</button>
             <div data-visibility-target="hideable" hidden>
@@ -16,7 +15,6 @@
               </form>
             </div>
         </div>
-      <hr>
       <!--filters-->
       <!--cards---->
           <% if @filtro != nil %>
