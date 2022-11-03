@@ -11,7 +11,7 @@
 
                 <!--bookings info My appoitments:-->
             <% if params[:id].to_i == current_user.id %>
-              <h2>My appoitments</h2>
+              <h3>My appoitments</h3>
                 <% if !@booking.nil? %>
                   <% @booking.each do |booking| %>
                     <% if booking.artist_info.to_i == current_user.id  %>
@@ -53,7 +53,7 @@
                 <!--bookings propios-->
               <div style="background-color:grey; m-2 p-2">
                 <% if !@booking.nil? %>
-                  <h3>My bookings:</h3>
+                  <h3>My bookings</h3>
                   <% @booking.each do |booking| %>
                     <% if booking.user_id == current_user.id %>
                       <% current_artist = User.find(booking.artist_info.to_i) %>
@@ -70,6 +70,27 @@
                 <% end %>
               </div>
             <% end %>
+                <!---chats-->
+                <div class="card-body p-4 text-black">
+                <% if !@user.chats.empty? &&  @user.id == current_user.id %>
+                  <h3>My Chats</h3>
+                    <% @user.chats.each do |chat| %>
+                        <%= link_to user_chatroom_path(@user.id, chat.to_i), style: "text-decoration: none; padding: 0px;" do %>
+                          <div class="index-card my-2", style="height: 80px;">
+                            <div class="d-flex align-items-center">
+                              <div>
+                                <%= image_tag "chaticon.png", class: "img-fluid", style:"width: 100px; height: 100px; object-fit: scale-down;" %>
+                              </div>
+                              <div class="index-card-body", style="margin-left: 25px;">
+                                <h5 class="">Chat # <%= chat %> </h5>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                </div>
+                <!---end chats-->
 
 
 

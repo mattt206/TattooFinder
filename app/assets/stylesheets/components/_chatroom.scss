@@ -18,12 +18,21 @@
     overflow: scroll;
     padding: 1rem;
     text-decoration-color: black;
+
+
+  }
+
+  .color-msn P{
+    text-decoration-color: black;
+    color: black;
+    background-color: aqua;
+    padding: 0;
   }
 
   #new_message {
     border-top: 1px solid $gray-200;
     padding: 1rem;
-    text-decoration-color: rgb(156, 3, 3);
+
 
     .form-group {
       margin-bottom: 0;
