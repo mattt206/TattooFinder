@@ -1,7 +1,7 @@
 
 .chatroom {
   margin-top: 10px;
-  height: calc(110vh - 75px);
+  height: calc(120vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,7 +51,8 @@
     padding: 1rem;
     text-decoration-color: rgba(0, 0, 0, 0.493);
     border-radius: 15px;
-    background: url('http://forums.crackberry.com/attachments/blackberry-10-wallpapers-f308/137432d1361639896t-z10-wallpaper-set-z10-music.jpg');
+    background: url('backchat.jpg');
+    background-size: 200px 200px;
   }
 
 
