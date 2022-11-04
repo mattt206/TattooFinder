@@ -11,6 +11,7 @@
           <p><%= f.input :end_time, html5: true %></p>
           <p><%= f.input_field :artist, as: :hidden, value: @user.id  %></p>
           <%= f.submit "Save", class: "btn btn-success mx-2 my-3" %>
+          
         <% end %>
       </div>
     </div>
