@@ -39,10 +39,19 @@
                     <h3 class="mb-0 me-2"><%= @user.nickname %></h3>
                   <% end %>
                 </div>
-                <div>
-                  <%= link_to profile_path(@service.user_id), style: "text-decoration: none; padding: 0px;" do %>
-                    <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">See Profile</p>
-                  <% end %>
+                <div class="d-flex">
+                  <div>
+                    <%= link_to profile_path(@service.user_id), style: "text-decoration: none; padding: 0px;" do %>
+                      <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">See Profile</p>
+                    <% end %>
+                  </div>
+                  <div>
+                  <% if @service.user.id == current_user.id %>
+                      <%= link_to edit_service_path(@service), class: "text-decoration: none; padding: 0px;" do %>
+                        <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Edit</p>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
 

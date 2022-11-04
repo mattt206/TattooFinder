@@ -1,6 +1,6 @@
 <div class="container signup-container">
   <div class="row justify-content-center align-items-center">
-    <div class="col-12 col-lg-4">
+    <div class ="col-12 col-lg-4">
       <h2>Edit Your Style</h2>
       <div class="form-inputs">
         <%= simple_form_for [@service]  do |f| %>
@@ -9,7 +9,7 @@
           <p><%= f.input :description %></p>
           <p><%= f.input :photo, as: :file %>
           <div class="form-actions d-flex justify-content-center">
-            <%= f.button :submit, "Save", class: "btn btn-outline-dark"%>
+            <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
             <%#= link_to "Back", services_path, class: "btn btn-outline-dark"%>
           </div>
         <% end %>

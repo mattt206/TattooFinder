@@ -70,15 +70,15 @@
 .form-control:focus {
   //background: red;
   box-shadow: none;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3) !important;
-  border-color: rgba(0, 0, 0, 0.363);
+  box-shadow: 0 0 4px rgba(32, 33, 37, 0.5) !important;
+  border-color: rgba(32, 33, 37, 0.3);
 }
 
 .form-select:focus {
   //background: red;
   box-shadow: none;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3) !important;
-  border-color: rgba(0, 0, 0, 0.363);
+  box-shadow: 0 0 4px rgba(32, 33, 37, 0.5) !important;
+  border-color: rgba(32, 33, 37, 0.3);
 }
 
 option:hover {
