@@ -46,11 +46,14 @@
                     <% end %>
                   </div>
                   <div>
+                  <% if !@service.user.id.nil? %>
+                  <% else %>
                   <% if @service.user.id == current_user.id %>
                       <%= link_to edit_service_path(@service), class: "text-decoration: none; padding: 0px;" do %>
                         <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Edit</p>
                       <% end %>
                     <% end %>
+                  <% end %>
                   </div>
                 </div>
               </div>
