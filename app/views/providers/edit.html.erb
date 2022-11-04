@@ -6,13 +6,12 @@
         <%= simple_form_for [@provider]  do |f| %>
           <p><%= f.input :name %></p>
           <p><%= f.input :address %></p>
-          <p><%= f.input :start_time %></p>
-          <p><%= f.input :close_time %></p>
+          <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
+          <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
           <p><%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <div class="form-actions d-flex justify-content-center">
-            <%= f.button :submit, "Save", class: "btn btn-outline-dark"%>
+            <%= f.button :submit, "Save", class: "btn btn-success"%>
             <%#= link_to "Back", services_path, class: "btn btn-outline-dark"%>
-            <%= link_to "Back", provider_path(@provider), type: "button", class: "btn btn-outline-dark"  %>
           </div>
         <% end %>
       </div>
