@@ -1,0 +1,105 @@
+.profile-container-bookings {
+
+  p {
+    color: black;
+
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  .card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }
+}
+
+
+.body-book{
+  background-image: url('https://img.freepik.com/free-photo/close-up-man-with-tattoo-his-hand-folding-shirt-sleeves_23-2148175652.jpg?w=740&t=st=1667581713~exp=1667582313~hmac=72797fd7c1e6cecf2db8cd3ab10471f59c5915a33643ffd40f21eb70fa67f6dc');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 600px;
+  background-size: cover;
+  background-position: 0px -60px;
+  display: flex;
+  background-attachment: fixed;
+  //margin-bottom: 10%;
+}
+
+.card-book{
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+  padding-bottom: 5%;
+}
+
+.book-user-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .avatar{
+    height: 115px;
+    width: 115px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.botton-book{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 4%;
+  padding-right: 4%;
+
+}
+
+.hr-book{
+    width: 95%;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+
+}
+
+.book-data{
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+.book-artist{
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+}
+
+.book-loc{
+  display: flex;
+  justify-content: start;
+  padding: 5%;
+}
+
+.book-artist-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  .avatar{
+    height: 85px;
+    width: 85px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+
+}

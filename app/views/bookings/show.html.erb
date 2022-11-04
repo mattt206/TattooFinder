@@ -1,56 +1,76 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8 my-1 py-1">
+ <div class="profile-container-bookings">
+  <div class ="body-book">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-8 my-1 py-1">
         <!--show booking card with booking info-->
-        <div class="show-card mt-1">
+          <div class="show-card mt-1">
 
-              <div  style="background-color:grey;" class="p-1">
-                <h2 style= " text-align:center;" > Client</h2>
-                <h4> Booking code: <%= @booking.id %></h4>
-                <h4> Nickname: <%= @booking.user.nickname %></h4>
-                <h4 class="card-text">Dia: <%= @booking.start_time.to_date %></h4>
-                <h4 class="card-text">hora: <%= @booking.start_time.hour %> pm</h4>
-                <h4 class="card-text">Tiempo estimado:   <%= @booking.end_time.hour - @booking.start_time.hour %> horas</h4>
-                <div class="d-flex justify-content-end mp-2">
-                <% if @booking.status == false %>
-                  <h5 class="badge bg-danger mx-2 rounded-pill"> Waiting to artist confirmation </h5>
-                <% else %>
-                  <!--h5 class="badge bg-success mx-2 rounded-pill"> Appoitment confirm! get ready for your new tattoo </h5-->
-                <% end %>
+              <div  class="card card-book">
+                <h3 style= "text-align:center;" class="mt-3" > Booking code #<%= @booking.id %></h3>
+                <div class="book-user-info">
+                  <h3> <%= @booking.user.nickname %></h3>
+                  <% if @booking.user.photo.attached? %>
+                    <%= cl_image_tag @booking.user.photo.key, class: "avatar" %>
+                  <% else %>
+                    <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar" %>
+                  <% end %>
                 </div>
-                <% if @booking.user_id == current_user.id %>
-                <div class="show-card-links my-2">
-                  <%= link_to "Delete", booking_path(@booking), class: "btn btn-success mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <hr class="hr-book">
+                <div class="book-data">
+                  <h4 class="card-text"> <strong>Date:</strong>  <%= @booking.start_time.strftime("%A, %B %e") %></h4>
+                  <h4 class="card-text"><strong>Hour:</strong> <%= @booking.start_time.hour %> <%= @booking.start_time.hour > 13 ? "PM" : "AM" %></h4>
+                  <h4 class="card-text"><strong>Estimated Time:</strong>   <%= @booking.end_time.hour - @booking.start_time.hour %> hours</h4>
                 </div>
-                <% end %>
-              </div>
+                <hr class="hr-book">
+                <div class="botton-book">
+                  <% if @booking.status == false %>
+                    <h5 class="badge bg-danger mx-2 rounded-pill m-0"> Waiting to artist confirmation </h5>
+                  <% else %>
+                    <h5 class="badge bg-success mx-2 rounded-pill m-0">Appoitment confirm! get ready for your new tattoo</h5>
+                  <% end %>
+                  <% if @booking.user_id == current_user.id %>
+                  <div class="show-card-links my-2">
+                    <%= link_to "Delete", booking_path(@booking), class: "btn btn-success mx-2", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </div>
+                  <% end %>
+                </div>
+                  </div>
           </div>
       </div>
       <!--show booking card with the artist info-->
       <div class="col-4 my-1 py-1">
-        <div class="show-card mt-1">
-            <div  style="background-color:grey;" class="p-2 mx-auto" >
-              <h2 style= "text-align:center;"> Artist: </h2>
-              <div class= "d-flex justify-content-around">
+        <div class="show-card mt-1 book-artist">
+          <div class = "book-loc">
+            <p class="small mb-0" style="color: rgba(32, 33, 37, 0.8) !important;"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
+          </div>
+            <div class="p-1 mx-auto" >
+            <div>
+            </div>
+              <h3 style= "text-align:center;"> Booking with </h3>
+              <div class= "book-artist-info my-4">
                 <% if @artist.photo.attached? %>
                   <%= cl_image_tag @artist.photo.key, class: "avatar" %>
                 <% else %>
                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "avatar" %>
                 <% end %>
-                <h4>   <%=  @artist.nickname   %> </h4>
+                <h3>   <%=  @artist.nickname   %> </h3>
               </div>
+              <hr class="hr-book">
                 <% if @booking.status == true %>
                   <div class="mx-auto m-2">
-                    <span class="badge bg-success mx-2 rounded-pill">Appoitment confirm! get ready for your new tattoo</span>
+                    <!--span class="badge bg-success mx-2 rounded-pill">Appoitment confirm! get ready for your new tattoo</span-->
                   </div>
                 <% end %>
-                <div class="d-flex justify-content-center m-2">
+                <div class="d-flex justify-content-center my-3">
                   <%= link_to "Back to artist profile", profile_path(@artist.id), class: "btn btn-success mx-2"%>
                 </div>
             </div>
         </div>
       </div>
 
-    </div> <!--col-8-->
-  </div> <!--row-->
-</div> <!--container-->
+        </div> <!--col-8-->
+      </div> <!--row-->
+    </div> <!--container-->
+  </div>
+</div>
