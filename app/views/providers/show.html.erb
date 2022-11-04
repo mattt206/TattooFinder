@@ -94,80 +94,57 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="row">
+        <!---studio profile---->
+        <!--2da fila artistas y agregar nuevso artistas-->
+        <!---- add new artist to your studio  --->
+        <div class="col-8">
+          <div class="card mt-4" style="border-radius: 15px; border:0px; box-shadow:  0px 1px 4px 0px rgba(0, 0, 0, 0.2);">
+            <div class="card-body">
+              <h3>add new artist</h3>
+              <%= form_tag provider_path(@provider), method: :get do  %>
+                <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
+                <%= submit_tag "Search", class: "btn btn-success my-2" %>
+              <% end %>
+            </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="container">
-  <div class="row my-3">
-    <!---studio profile---->
-
-<!--2da fila artistas y agregar nuevso artistas-->
-
-
-           <!---- add new artist to your studio  --->
-          <div class = "col-4 mb-1" style="background-color:grey;" >
-              <div class="mx-auto">
-                <h2>add new artist</h2>
-                  <%= form_tag provider_path(@provider), method: :get do  %>
-                  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
-                  <%= submit_tag "Search", class: "btn btn-success" %>
-                  <% end %>
-              </div>
             <!--mostrar los artistas que pertenecesn al estudio-->
+
             <% if params[:query].nil? %>
             <% else %>
               <% @users.each do |user| %>
-                <div class="mx-auto card p-3 my-3 text-black d-flex flex-row align-items-center justify-content-around w-25">
-                    <%= user.nickname %>
+                <div class="index-card my-2 mx-3", style="height: 80px; width:450px;">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <% if user.photo.attached? %>
+                        <%= cl_image_tag user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;     object-fit: cover;" %>
+                      <% else %>
+                        <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg",   class:       "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                      <% end %>
+                    </div>
+                    <div class="index-card-body", style= "margin-left: 25px;">
+                      <p class=""><strong><%= user.nickname %></strong></p>
+                    </div>
+                  </div>
+                  <div class="ml-auto p-2">
                     <%= simple_form_for provider_path(@provider), url: provider_path(@provider), method: :get do |f| %>
                       <%= f.hidden_field :provider_id, value: user.id, name: "artist" %>
                       <div class="form-actions d-flex justify-content-center">
                         <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
                       </div>
                     <% end %>
+                  </div>
                 </div>
               <% end %>
             <% end %>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
          <!--mostrar los artistas que pertenecesn al estudio-->
-
-
-    </div><!--col-12-->
-  </div> <!--row-->
-</div> <!--container-->
-
 
 <!--mapa con geocode prueba-->
 <%# <div class="container" data-controller='find-map'>
