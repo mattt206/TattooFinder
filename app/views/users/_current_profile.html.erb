@@ -35,10 +35,12 @@
               </div>
             </div>
             <div class="d-flex justify-content-end">
-              <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
-                <i class="fa-regular fa-pen-to-square"></i>
-                <%= link_to "Edit User"%>
-              </div>
+              <%= link_to "edit", class: "" do %>
+                <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  Edit profile
+                </div>
+              <% end %>
             </div>
             <hr>
             <h4>Workplace</h4>
@@ -75,6 +77,5 @@
             </div>
             <h3 class="profile-name"><%= service.style %></h3>
           </div>
-
       <% end %>
     </div>
