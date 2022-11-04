@@ -1,29 +1,47 @@
-<div class="container chatroom">
-<div class="container chatroom"
+
+<div class="container chatroom col-8"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
->
-  <h2>Welcome to <%= @chatroom.name %></h2>
-  <% if !@artist.nil? %>
-    <h3> chat with: <%= @artist.nickname %></h3>
-  <% end %>
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+  <div class="icons-end">
+    <i class="fa-solid fa-comments"></i>
+  </div>
+  <div class="card-chat">
+    <% if !@artist.nil? %>
+      <div class="d-flex align-items-center">
+        <% if @artist.photo.attached? %>
+          <%= cl_image_tag @artist.photo.key, class: "avatar img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+        <% else %>
+          <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:  "avatar img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
+        <% end %>
+      </div>
+      <h3>   <%= @artist.nickname %></h3>
+    <% end %>
+  </div>
 
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
-      <%= render "messages/message", message: message, artist: @artist %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %> ">
+          <%= render "messages/message", message: message %>
+        </div>
+      </div>
     <% end %>
   </div>
-  <%= simple_form_for [current_user, @chatroom, @message],
-    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
-    class: "d-flex" } do |f| %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Message ##{@chatroom.name}",
-      wrapper_html: {class: "flex-grow-1"} %>
-      <% if !@artist.nil? %>
-      <p><%= f.input :artist_info, :as => :hidden, :input_html => { :value =>  @artist.id } %></p>
-      <% end %>
-    <%= f.button :submit, "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+
+  
+    <%= simple_form_for [current_user, @chatroom, @message],
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
+      class: "d-flex" } do |f| %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Message ##{@chatroom.name}",
+        wrapper_html: {class: "flex-grow-1"} %>
+        <% if !@artist.nil? %>
+        <p><%= f.input :artist_info, :as => :hidden, :input_html => { :value =>  @artist.id } %></p>
+        <% end %>
+        <p><%= f.input :created_at, :as => :hidden, :input_html => { :value =>  Time.now } %></p>
+      <%= f.button :submit, "Send", class: "btn btn-primary mb-3" %>
+    <% end %>
 </div>
