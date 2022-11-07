@@ -10,6 +10,7 @@
         <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
         <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
         <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <p><%= f.input :owner, :as => :hidden, :input_html => { :value =>  current_user.id.to_i } %></p>
 
           <div>
             <%= f.input :category,

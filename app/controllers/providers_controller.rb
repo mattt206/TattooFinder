@@ -80,6 +80,6 @@ class ProvidersController < ApplicationController
   end
 
   def providers_params
-    params.require(:provider).permit(:name, :description, :address, :latitude, :longitude, :start_time, :close_time, photos: [], category: [])
+    params.require(:provider).permit(:name, :description, :address, :latitude, :longitude, :start_time, :close_time, :owner, photos: [], category: [])
   end
 end
