@@ -22,7 +22,7 @@
           <% else %>
             <h3 class="mb-0 me-2"><%= @user.nickname %></h3>
           <% end %>
-          <%= @messages = Message.all %>
+          <% @messages = Message.all %>
           <%#= raise %>
         </div>
         <div>
