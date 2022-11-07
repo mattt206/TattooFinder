@@ -34,8 +34,9 @@
                           <div class="index-card my-2", style="height: 80px;">
                             <div class="d-flex align-items-center">
                               <div>
-                                <% if @user.photo.attached? %>
-                                  <%= cl_image_tag @user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+                                <% booking_user = User.find(booking.user_id) %>
+                                <% if booking_user.photo.attached? %>
+                                  <%= cl_image_tag booking_user.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
                                 <% else %>
                                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:   "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
                                 <% end %>
@@ -51,24 +52,40 @@
                   <% end %>
                 <% end %>
                 <!--bookings propios-->
-              <div style="background-color:grey; m-2 p-2">
                 <% if !@booking.nil? %>
                   <h3>My bookings</h3>
                   <% @booking.each do |booking| %>
                     <% if booking.user_id == current_user.id %>
                       <% current_artist = User.find(booking.artist_info.to_i) %>
-                      <div style="background-color:grey;">
+                      <div  class="index-card my-2", style="height: 80px;">
                         <% if booking.status == false %>
                           <div>
                             <h5 class="badge bg-danger mx-2 rounded-pill"> Pending booking with: <%= current_artist.nickname  %> </h5>
                             <%= link_to "details", booking_path(booking.id), class: "btn btn-success mx-2" %>
                           </div>
+                        <% else %>
+                          <%= link_to booking_path(booking.id), style: "text-decoration: none; padding: 0px;" do %>
+                            <div class="index-card my-2", style="height: 80px;">
+                              <div class="d-flex align-items-center">
+                                <div>
+                                  <% booking_artist = User.find(booking.artist_info) %>
+                                  <% if booking_artist.photo.attached? %>
+                                    <%= cl_image_tag booking_artist.photo.key, class: "img-fluid", style:"width: 100px; height: 100px;   object-fit: cover;" %>
+                                  <% else %>
+                                    <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class:   "img-fluid", style:"width: 100px; height: 100px; object-fit: cover;" %>
+                                  <% end %>
+                                </div>
+                                <div class="index-card-body", style="margin-left: 25px;">
+                                  <h5 class="">Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
                         <% end %>
                       </div>
                     <% end %>
                   <% end %>
                 <% end %>
-              </div>
             <% end %>
                 <!---chats-->
                 <div class="card-body p-4 text-black">
