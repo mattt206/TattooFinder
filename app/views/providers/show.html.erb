@@ -101,16 +101,20 @@
         <!---studio profile---->
         <!--2da fila artistas y agregar nuevso artistas-->
         <!---- add new artist to your studio  --->
-        <div class="col-8">
-          <div class="card mt-4" style="border-radius: 15px; border:0px; box-shadow:  0px 1px 4px 0px rgba(0, 0, 0, 0.2);">
-            <div class="card-body">
-              <h3>add new artist</h3>
-              <%= form_tag provider_path(@provider), method: :get do  %>
-                <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
-                <%= submit_tag "Search", class: "btn btn-success my-2" %>
-              <% end %>
-            </div>
-            <%= raise %>
+        <% if !@provider.owner.nil? %>
+          <% if @provider.owner == current_user.id %>
+          <div class="col-8">
+            <div class="card mt-4" style="border-radius: 15px; border:0px; box-shadow:  0px 1px 4px 0px rgba(0, 0, 0, 0.2);">
+              <div class="card-body">
+                <h3>add new artist</h3>
+                <%= form_tag provider_path(@provider), method: :get do  %>
+                  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "nickname" %>
+                  <%= submit_tag "Search", class: "btn btn-success my-2" %>
+                <% end %>
+              </div>
+          <% end %>
+        <% end %>
+
 
             <!--mostrar los artistas que pertenecesn al estudio-->
 
