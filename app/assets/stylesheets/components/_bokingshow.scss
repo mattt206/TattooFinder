@@ -25,7 +25,6 @@
 
 
 .body-book{
-  background-image: url('https://img.freepik.com/free-photo/close-up-man-with-tattoo-his-hand-folding-shirt-sleeves_23-2148175652.jpg?w=740&t=st=1667581713~exp=1667582313~hmac=72797fd7c1e6cecf2db8cd3ab10471f59c5915a33643ffd40f21eb70fa67f6dc');
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 600px;
@@ -41,6 +40,7 @@
   backdrop-filter: blur(20px);
   border-radius: 15px;
   padding-bottom: 5%;
+  border: 0px !important;
 }
 
 .book-user-info{
