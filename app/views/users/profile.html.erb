@@ -19,7 +19,8 @@
                         <div class="index-card my-2", style="height: 80px;">
                           <div class="d-flex align-items-center">
                             <div>
-                              <h5 class="", style="margin-left: 25px;"> Do you accept the appoitment # <%= booking.id  %>?   </h5>
+                              <% booking_artist = User.find(booking.artist_info) %>
+                              <p class="", style="margin-left: 25px; opacity: 1;"><strong> Do you accept the appoitment #<%= booking.id  %> with <%=  booking_artist.nickname %>?</strong></p>
                             </div>
                                                   <!--acepatar solicitud-->
                         <%= form_tag(profile_path, method: "get") do %>
@@ -42,7 +43,9 @@
                                 <% end %>
                               </div>
                               <div class="index-card-body", style="margin-left: 25px;">
-                                <h5 class="">Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
+                                <p style="opacity: 1;"><strong>Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </strong></p>
+                                <% booking_user = User.find(booking.user_id) %>
+                                <p><%=booking_user.nickname %></p>
                               </div>
                             </div>
                           </div>
@@ -76,7 +79,9 @@
                                   <% end %>
                                 </div>
                                 <div class="index-card-body", style="margin-left: 25px;">
-                                  <h5 class="">Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
+                                  <p style="opacity: 1;"><strong>Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </strong></p>
+                                  <% booking_artist = User.find(booking.artist_info) %>
+                                  <p> <%= booking_artist.nickname %></p>
                                 </div>
                               </div>
                             </div>
@@ -88,7 +93,8 @@
                 <% end %>
             <% end %>
                 <!---chats-->
-                <div class="card-body p-4 text-black">
+                <div class="card-body mt-4">
+                <p><%= %></p>
                 <% if !@user.chats.empty? &&  @user.id == current_user.id %>
                   <h3>My Chats</h3>
                     <% @user.chats.each do |chat| %>
@@ -96,7 +102,10 @@
                           <div class="index-card my-2", style="height: 80px;">
                             <div class="d-flex align-items-center">
                               <div>
-                                <%= image_tag "chaticon.png", class: "img-fluid", style:"width: 100px; height: 100px; object-fit: scale-down;" %>
+                                <%= %>
+                              </div>
+                              <div>
+                                <%= image_tag "chaticon.png", class: "img-fluid", style:"width: 70px; height: 70px; object-fit: scale-down;" %>
                               </div>
                               <div class="index-card-body", style="margin-left: 25px;">
                                 <h5 class="">Chat # <%= chat %> </h5>
