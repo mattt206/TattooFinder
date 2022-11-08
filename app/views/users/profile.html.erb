@@ -65,8 +65,7 @@
                           </div>
                         <% else %>
                           <%= link_to booking_path(booking.id), style: "text-decoration: none; padding: 0px;" do %>
-                            <div class="index-card my-2", style="height: 80px;">
-                              <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center", style="height: 80px;">
                                 <div>
                                   <% booking_artist = User.find(booking.artist_info) %>
                                   <% if booking_artist.photo.attached? %>
@@ -78,7 +77,6 @@
                                 <div class="index-card-body", style="margin-left: 25px;">
                                   <h5 class="">Appoitment for the day <%= booking.end_time.day  %> at <%= booking.end_time.hour    %> pm </h5>
                                 </div>
-                              </div>
                             </div>
                           <% end %>
                         <% end %>
