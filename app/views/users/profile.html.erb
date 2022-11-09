@@ -12,7 +12,7 @@
                 <!--bookings info My appoitments:-->
             <% if params[:id].to_i == current_user.id %>
                 <% if !@booking.nil? %>
-                  <h3 class="mt-4">My next client!</h3>
+                  <h3 class="mt-5">My next client!</h3>
                   <% @booking.each do |booking| %>
                     <% if booking.artist_info.to_i == current_user.id  %>
                       <% if booking.status == false %>
@@ -53,7 +53,7 @@
                 <% end %>
                 <!--bookings propios-->
                 <% if !@booking.nil? %>
-                  <h3 class="mt-4">My next tattoo!</h3>
+                  <h3 class="mt-5">My next tattoo!</h3>
                   <% @booking.each do |booking| %>
                     <% if booking.user_id == current_user.id %>
                       <% current_artist = User.find(booking.artist_info.to_i) %>
@@ -88,9 +88,8 @@
                 <% end %>
             <% end %>
                 <!---chats-->
-                <div class="card-body p-4 text-black">
                 <% if !@user.chats.empty? &&  @user.id == current_user.id %>
-                  <h3>My Chats</h3>
+                  <h3 class="mt-5">My Chats</h3>
                     <% @user.chats.each do |chat| %>
                         <%= link_to user_chatroom_path(@user.id, chat.to_i), style: "text-decoration: none; padding: 0px;" do %>
                           <div class="index-card my-2", style="height: 80px;">
@@ -102,6 +101,10 @@
                                 <h5 class="">Chat # <%= chat %> </h5>
                               </div>
                             </div>
+                            <i class="fa-solid fa-trash-can"></i>
+                          <%= link_to user_chatroom_path(@user.id, chat.to_i), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-icon" do %>
+                            <i class="fa-solid fa-trash-can"></i>
+                          <% end %>
                           </div>
                         <% end %>
                     <% end %>
