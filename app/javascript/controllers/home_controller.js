@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   // definir target para la busqueda desde el html
-  static targets = ["search"]
+  static targets = ["search", "linktoscroll"]
 
   connect() {
 
@@ -13,8 +13,7 @@ export default class extends Controller {
 
   busqueda(){
     const search = this.searchTarget;
-    // console.log(search)
-    // console.log(document.getElementById('busq').value);
+
   }
 
   setUrl() {
@@ -22,6 +21,10 @@ export default class extends Controller {
     window.location.href = 'services?query=' + document.getElementById('busq').value;
   };
 
+  scroll(){
+
+
+  }
 
 
 }

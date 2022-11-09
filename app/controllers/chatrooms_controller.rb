@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_artist, only: %i[create show]
+  before_action :set_artist, only: %i[create show destroy]
   # crear el chat
   # capturar el current_user y el id del profile
   # enlazar estos dos y mostrar
@@ -32,6 +32,15 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     @message[:artist_info] = @artist.id
+  end
+
+  def destroy
+    @chatroom = Chatroom.find(params[:id])
+    @user = User.find(@artist.id)
+    @user.chats.delete(@chatroom.id.to_s)
+    @user.save
+    @chatroom.destroy
+    redirect_to profile_path(@artist.id), status: :see_other
   end
 
   private

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :bookings, only: %i[new create]
-    resources :chatrooms, only: %i[create new show] do
+    resources :chatrooms, only: %i[create new show destroy] do
       resources :messages, only: :create
     end
   end
