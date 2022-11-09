@@ -1,12 +1,12 @@
 .banner-styles {
-  height: 800px;
+  height: 850px;
   background-color: #07080A;
 }
 
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 16px;
 }
 
 .card-category {
@@ -21,16 +21,18 @@
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
+  border-style: solid;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .banner-styles h2 {
   background-color: whitesmoke;
   color: #292525;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bolder;
+  font-style: italic;
   padding: 5px 10px;
-  width: 240px;
+  width: 220px;
   border-radius: 5px;
 }
 
