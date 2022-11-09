@@ -38,6 +38,7 @@ class ProvidersController < ApplicationController
 
   def create
     # params["provider"][:user_id] = current_user.id
+
     @provider = Provider.new(providers_params)
     @provider.category.shift
     if @provider.save
