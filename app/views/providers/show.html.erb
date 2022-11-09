@@ -63,9 +63,9 @@
           <div>
             <h2>About the Studio</h2>
             <h4 class="mb-5", style="font-weight: 300; height: 60px;"><%= @provider.description %></h4>
-            <div>
-              <span><i class="fa-solid fa-location-dot"></i> <%= @provider.address %></span>
-              <span class="ms-3"><i class="fa-solid fa-clock"></i> <%= @provider.start_time.hour%> - <%= @provider.    close_time.hour %></span>
+            <div class="d-flex justify-content-between">
+              <span class="me-3"><i class="fa-solid fa-location-dot"></i> <%= @provider.address %></span>
+              <span ><i class="fa-solid fa-clock"></i> <%= @provider.start_time.hour%> - <%= @provider.    close_time.hour %></span>
             </div>
           </div>
           <div>
