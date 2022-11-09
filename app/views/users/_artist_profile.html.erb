@@ -52,20 +52,22 @@
     </div>
     <hr>
     <h4>Workplace</h4>
-    <%= link_to provider_path(@user.provider), type: "button", style: "text-decoration: none; padding: 0px;" do %>
-      <div class="d-flex align-items-center">
-        <div>
-         <% if @user.provider.photos.attached? %>
-            <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
-          <% else %>
-            <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
-          <% end %>
+    <% if !@user.provider_id.nil? %>
+      <%= link_to provider_path(@user.provider), type: "button", style: "text-decoration: none; padding: 0px;" do %>
+        <div class="d-flex align-items-center">
+          <div>
+           <% if @user.provider.photos.attached? %>
+              <%= cl_image_tag @user.provider.photos.first.key, class: "img-fluid rounded-circle", style:"width: 50px; height: 50px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "unknow.png", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 50px; height: 50px; object-fit: cover;" %>
+            <% end %>
+          </div>
+          <div class="ms-3">
+            <p><strong><%= @user.provider.name %></strong></p>
+            <p><%= @user.provider.address %></p>
+          </div>
         </div>
-        <div class="ms-3">
-          <p><strong><%= @user.provider.name %></strong></p>
-          <p><%= @user.provider.address %></p>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -73,7 +75,7 @@
 <div class="card-group">
   <% @user.services.each do |service|  %>
     <%= link_to service_path(service), style: "text-decoration: none;" do %>
-      <div class="profile-card-2 mx-2">
+      <div class="profile-card-2 mx-2 h-100" style="max-height:333px; height: 333px !important;">
         <div>
           <% if service.photo.attached? %>
             <%= cl_image_tag service.photo.key, class: "img img-responsive img-fluid", style: "object-fit: cover;"%>
