@@ -67,7 +67,7 @@
     <div class="card-group">
       <% @user.services.each do |service|  %>
         <%= link_to service_path(service), style: "text-decoration: none; height:100%;" do %>
-          <div class="profile-card-2 mx-2 h-100 ">
+          <div class="profile-card-2 mx-2 h-100" style="max-height:333px; height: 333px !important;">
             <div>
               <% if service.photo.attached? %>
                 <%= cl_image_tag service.photo.key, class: "img img-responsive img-fluid", style: "object-fit: cover;"%>
