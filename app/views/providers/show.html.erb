@@ -38,17 +38,14 @@
                 <% if !@provider.owner.nil? %>
                  <% if !current_user.nil? %>
                   <% if @provider.owner == current_user.id && !current_user.id.nil? %>
-
                         <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
                           <i class="fa-regular fa-pen-to-square"></i>
                           <%= link_to "Edit studio", edit_provider_path(@provider), class: "text-decoration: none; padding: 0px;"%>
                         </div>
                         <div class= "btn btn-success", style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
-
                           <i class="fa-solid fa-trash-can"></i>
                           <%= link_to "Delete", provider_path(@provider), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class: "text-decoration: none; padding: 0px;"%>
                         </div>
-
                   <% end %>
                 <% end %>
               <% end %>
@@ -106,7 +103,6 @@
         </div>
       </div>
       <div class="row" data-controller="home">
-
         <!---studio profile---->
         <!--2da fila artistas y agregar nuevso artistas-->
         <!---- add new artist to your studio  --->
@@ -127,9 +123,7 @@
             <% end %>
           <% end %>
         <% end %>
-
             <!--mostrar los artistas que pertenecesn al estudio-->
-
             <% if params[:query].nil? %>
             <% else %>
               <% @users.each do |user| %>

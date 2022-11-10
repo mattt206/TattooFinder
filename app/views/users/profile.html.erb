@@ -9,7 +9,7 @@
               <%= render "current_profile" %>
             <% end %>
 
-                <!--bookings info My appoitments:-->
+            <!--bookings info My appoitments:-->
             <% if params[:id].to_i == current_user.id %>
                 <% if !@booking.nil? %>
                   <h3 class="mt-5">My next client!</h3>
@@ -21,13 +21,12 @@
                             <div>
                               <h5 class="", style="margin-left: 25px;"> Do you accept the appoitment # <%= booking.id  %>?   </h5>
                             </div>
-                                                  <!--acepatar solicitud-->
+                        <!--acepatar solicitud-->
                         <%= form_tag(profile_path, method: "get") do %>
                           <%= button_tag "confirm", value: booking.id, class: "btn btn-success mx-2" %>
                         <% end %>
                           </div>
                         </div>
-
                       <!--acepatar solicitud-->
                       <% else %>
                         <%= link_to booking_path(booking.id), style: "text-decoration: none; padding: 0px;" do %>
