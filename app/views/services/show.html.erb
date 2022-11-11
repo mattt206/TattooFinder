@@ -19,7 +19,7 @@
               <div class="d-flex align-items-center justify-content-between mb-3">
                 <p class="small mb-0" style="color: rgba(32, 33, 37, 0.8) !important;"><i class="fa-solid fa-location-dot"></i>  Medellín</p>
                 <% if @user.services[0] != nil %>
-                  <h4 class="fw-bold mb-0">Base price $<%= @user.services[0].price %></h4>
+                  <h4 class="fw-bold mb-0">Base price $<%= @service.price %></h4>
                 <% end %>
               </div>
             </div>
