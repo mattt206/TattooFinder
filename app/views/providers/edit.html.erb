@@ -1,19 +1,30 @@
 <div class="container signup-container">
   <div class="row justify-content-center align-items-center mb-5">
     <div class = "col-12 col-lg-4">
-      <h2>Edit Your Studio</h2>
+      <h2>New Studio</h2>
       <div class="form-inputs">
         <%= simple_form_for [@provider]  do |f| %>
-          <p><%= f.input :name %></p>
-          <p><%= f.input :address %></p>
-          <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
-          <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
-          <p><%= f.input :photos, as: :file, input_html: { multiple: true } %>
-          <div class="form-actions d-flex justify-content-center">
-            <%= f.button :submit, "Save", class: "btn btn-success"%>
-            <%#= link_to "Back", services_path, class: "btn btn-outline-dark"%>
+        <p><%= f.input :name %></p>
+        <p><%= f.input :description %></p>
+        <p><%= f.input :address, placeholder: 'Ex: Calle 10 # 35-20, Medellin, Antioquia' %></p>
+        <p><%= f.input :start_time, as: :time, label: "hora de apertura"  %></p>
+        <p><%= f.input :close_time, as: :time, label: "hora de cierre" %></p>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <p><%= f.input :owner, :as => :hidden, :input_html => { :value =>  current_user.id.to_i } %></p>
+
+          <div>
+            <%= f.input :category,
+            as: :check_boxes,
+            collection: Provider.categories.keys,
+            input_html: { class: "tag-selector" },
+            item_wrapper_class: 'tag-item' %>
+            <%#= f.collection_check_boxes :category, Provider.categories, :first, :last, include_blank: false %>
           </div>
-        <% end %>
+
+        <div class="form-actions d-flex justify-content-center">
+          <%= f.button :submit, "Save", class: "btn btn-success mx-2 my-3"%>
+        </div>
+      <% end %>
       </div>
     </div>
     <div class="col-12 col-lg-4">

@@ -10,12 +10,6 @@
           <%= image_tag "unknow.png", class: "img-ser", style:"width: 100%; border-radius:15px; max-height: 856px; object-fit: cover;" %>
         <% end %>
       </div>
-              <%= link_to services_path, class: "" do %>
-                <div class= "btn btn-success mt-2", style="padding-left: 40px; padding-right: 40px;">
-                  <i class="fa-regular fa-square-caret-left"></i>
-                  Back
-                </div>
-                <% end %>
     </div>
         <!--start artist info-->
       <div class="col-12 col-lg-4 mt-4">
@@ -49,36 +43,26 @@
                     <%= link_to profile_path(@service.user_id), style: "text-decoration: none; padding: 0px;" do %>
                       <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">See Profile</p>
                     <% end %>
-
                   </div>
-                  <div>
-                  <% if !@service.user.id.nil? %>
-                  <% else %>
-                  <% if !current_user.nil? %>
-                    <% if @service.user.id == current_user.id %>
-                        <%= link_to edit_service_path(@service), class: "text-decoration: none; padding: 0px;" do %>
-                          <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Edit</p>
+                    <% if @service.user.id.nil? %>
+                    <% else %>
+                      <% if !current_user.nil? %>
+                        <% if @service.user.id == current_user.id %>
+                          <div>
+                            <%= link_to edit_service_path(@service), class: "text-decoration: none; padding: 0px;" do %>
+                              <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Edit</p>
+                            <% end %>
+                          </div>
+                          <div>
+                            <%= link_to service_path(@service), style: "text-decoration: none; padding: 0px;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+                              <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Delete</p>
+                            <% end %>
+                          </div>
                         <% end %>
                       <% end %>
-                      <% end %>
-                      <div class="show-card-links my-2">
-                        <%= link_to service_path(@service), style: "text-decoration: none; padding: 0px;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
-                        <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Delete</p>
-                        <% end %>
-                      </div>
                     <% end %>
-                  <div class="show-card-links my-2">
-
-                  </div>
-                  </div>
-                  <div>
-                  <% if !@service.user.id.nil? %>
-                  <% else %>
-                  <% end %>
-                  </div>
                 </div>
               </div>
-
             </div>
             <% if !@user.provider_id.nil?  %>
               <hr>
