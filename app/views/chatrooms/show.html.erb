@@ -17,6 +17,14 @@
       </div>
       <h3>   <%= @artist.nickname %></h3>
     <% end %>
+    </div>
+    <div class="chat-book mb-1">
+          <%= link_to new_user_booking_path(@artist.id) do %>
+          <div class= "btn btn-success" style="padding-left: 40px; padding-right: 40px; margin-right: 8px; margin-left: 8px;">
+          <i class="far fa-clock me-2" style= "text-decoration: none;"></i>
+          Book now
+        </div>
+      <% end %>
   </div>
 
 
@@ -30,7 +38,7 @@
     <% end %>
   </div>
 
-  
+
     <%= simple_form_for [current_user, @chatroom, @message],
       html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
       class: "d-flex" } do |f| %>

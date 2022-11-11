@@ -1,5 +1,5 @@
 <div class="container">
-  <div class = "row">
+  <div class = "row mb-5">
 
     <div class = "col-12 col-lg-8 mt-4" >
       <!---service or portafolio divs--->
@@ -10,6 +10,12 @@
           <%= image_tag "unknow.png", class: "img-ser", style:"width: 100%; border-radius:15px; max-height: 856px; object-fit: cover;" %>
         <% end %>
       </div>
+              <%= link_to services_path, class: "" do %>
+                <div class= "btn btn-success mt-2", style="padding-left: 40px; padding-right: 40px;">
+                  <i class="fa-regular fa-square-caret-left"></i>
+                  Back
+                </div>
+                <% end %>
     </div>
         <!--start artist info-->
       <div class="col-12 col-lg-4 mt-4">
