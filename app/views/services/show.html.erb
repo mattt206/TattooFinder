@@ -30,7 +30,6 @@
                 <% else %>
                   <%= image_tag "https://i.pinimg.com/564x/51/54/dc/5154dc01cfdb8d29cbe6196c6787d8af.jpg", class: "img-fluid rounded-circle border border-dark border-3", style:"width: 100px; height: 100px; object-fit: cover;" %>
                 <% end %>
-
               </div>
               <div class="flex-grow-1 ms-3">
                 <div class="d-flex flex-row align-items-center mb-2">
@@ -44,6 +43,7 @@
                     <%= link_to profile_path(@service.user_id), style: "text-decoration: none; padding: 0px;" do %>
                       <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">See Profile</p>
                     <% end %>
+
                   </div>
                   <div>
                   <% if !@service.user.id.nil? %>
@@ -53,8 +53,21 @@
                         <%= link_to edit_service_path(@service), class: "text-decoration: none; padding: 0px;" do %>
                           <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Edit</p>
                         <% end %>
+
                       <% end %>
+                      <div class="show-card-links my-2">
+                        <%= link_to service_path(@service), style: "text-decoration: none; padding: 0px;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+                        <p class="outline-styles" style="border: 2px solid rgba(32, 33, 37, 0.8)">Delete</p>
+                        <% end %>
+                      </div>
                     <% end %>
+                  <div class="show-card-links my-2">
+
+                  </div>
+                  </div>
+                  <div>
+                  <% if !@service.user.id.nil? %>
+                  <% else %>
                   <% end %>
                   </div>
                 </div>
