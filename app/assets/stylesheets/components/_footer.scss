@@ -2,6 +2,7 @@ footer.footer{
   width: 100%;
   height: 40vh;
   display:flex;
+  margin-bottom: 20px;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -23,9 +24,8 @@ p {
     color: #07080A;
     font-size: 15px ;
     font-weight: 600;
-    border-left: 1px solid #07080A;
+    border-left: 2px solid #07080A;
     padding-left: 20px;
-    padding-bottom: 20px;
 }
 
 .fa-heart {
@@ -37,7 +37,8 @@ p {
     color: #07080A;
     font-size: 17px ;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+    margin-top: 4px;
 }
 
 #lewagon {
@@ -51,12 +52,14 @@ p {
 
 footer .column-2-footer {
   width: 175px;
+  border-left: 2px solid #07080A;
+  padding-left: 20px;
+  height: 216px;
 }
 
 
 .footer .column-2-footer .about-tattoo{
-    border-left: 1px solid #07080A;
-    padding-left: 20px;
+
     width: 100%;
     height: 156px;
     display: flex;
@@ -106,4 +109,46 @@ footer .column-2-footer {
 
 .development-team p a:hover {
   text-decoration: underline #07080A;
+}
+
+footer .column-3-footer .form-control {
+  background-color: #1f2022;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  border: none;
+  resize: none;
+  color: #d1d2d2;
+  padding: 0.7em 1em;
+}
+
+.column-3-footer {
+  width: 30%;
+  height: 216px;
+  border-left: 2px solid #07080A;
+  padding-left: 20px;
+}
+
+.footer .column-3-footer h4{
+  color: #07080A;
+  font-size: 17px ;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+.btn-secondary-outline {
+  background-color: #3d3838;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 22px 0px;
+  font-size: 17px;
+
+  &:hover{
+    background-color: #07080A;
+    color: white;
+  }
+}
+
+.form .btn-secondary-outline {
+  align-self: center;
 }
