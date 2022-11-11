@@ -2,7 +2,7 @@
   <div class ="banner-profile">
     <div class="container">
       <div class="row">
-         <div class="col-12">
+         <div class="col-12 mb-5">
             <% if params[:id].to_i != current_user.id %>
               <%= render "artist_profile" %>
             <% elsif params[:id].to_i == current_user.id %>
