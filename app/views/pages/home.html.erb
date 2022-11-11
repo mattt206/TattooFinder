@@ -15,8 +15,8 @@
     </div>
   </div>
 
-  <section id="section1">
-  <div class="banner-explore" style="margin-top:100px;">
+  <section id="section1" style="height: 636px;">
+  <div class="banner-explore" style="margin-top:80px;">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-6">
@@ -27,7 +27,9 @@
           <%= link_to "FIND MY STYLE", services_path, class: "find-link mt-3" %>
         </div>
         <div class="col-12 col-lg-6">
-          <%= image_tag "https://res.cloudinary.com/dxy32luqr/image/upload/v1667584780/development/tatuador1_kexr4k.png", style:"object-fit: cover; width: 100%; height: 550px; border-radius: 15px;"%>
+          <div>
+            <%= video_tag "https://res.cloudinary.com/ddiyucxtr/video/upload/v1668134173/Tattoo_finder_Cuadrado_ebmlao.mp4", style:"object-fit: cover; width: 100%; height: 100%; border-radius: 15px;", controls: "", poster:"https://res.cloudinary.com/ddiyucxtr/image/upload/v1668134946/Miniatura_kxtqf4.png" %>
+          </div>
         </div>
       </div>
     </div>
@@ -35,7 +37,7 @@
   </section>
 
 
-  <div class="banner-styles mt-5 d-flex justify-content-center">
+  <div class="banner-styles d-flex justify-content-center" style="margin-top:80px;">
     <div class="container">
       <h2 class="mt-5 mb-5">TATTOO STYLES</h2>
       <div class="cards col-12">
