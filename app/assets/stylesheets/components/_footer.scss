@@ -33,29 +33,11 @@ p {
 }
 
 
-.footer .column-2-footer h4, .column-3-footer h4{
+.footer .column-2-footer h4{
     color: #07080A;
     font-size: 17px ;
     font-weight: bold;
     margin-bottom: 40px;
-}
-
-.footer .column-2-footer .connect-tattoo{
-  border-left: 1px solid #07080A;
-  padding-left: 20px;
-}
-
-.footer .column-2-footer .connect-tattoo p a{
-  color: #3d3838;
-  font-size: 15px ;
-  font-weight: lighter;
-  padding-bottom: 20px;
-  text-decoration: none;
-  transition: .2s;
-}
-
-.footer .column-2-footer .connect-tattoo p a:hover{
-  text-decoration: underline #07080A;
 }
 
 #lewagon {
@@ -67,12 +49,12 @@ p {
   text-decoration: underline #ff2424;
 }
 
-footer .column-3-footer {
-  width: 190px;
+footer .column-2-footer {
+  width: 175px;
 }
 
 
-.footer .column-3-footer .about-tattoo{
+.footer .column-2-footer .about-tattoo{
     border-left: 1px solid #07080A;
     padding-left: 20px;
     width: 100%;
@@ -83,7 +65,7 @@ footer .column-3-footer {
     flex-direction: column;
 }
 
-.footer .column-3-footer .about-tattoo p{
+.footer .column-2-footer .about-tattoo p{
   color: #3d3838;
   font-size: 15px ;
   font-weight: lighter;
